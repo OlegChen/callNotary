@@ -1,0 +1,26 @@
+//
+//  XZTabBarViewControler.h
+//  LDrama
+//
+//  Created by 肖 喆￼ on 12-11-20.
+//  Copyright (c) 2012年 肖 喆￼. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface XZTabBarViewControler : UIViewController {
+    
+    UIView* topView; //320 * 416 
+    UIView* bottomView; //44
+    NSArray* tabs;
+    NSArray* tabsImages;
+    NSArray* clickImages;
+    NSArray* controllers;
+    UIImageView* buttonBackGround;
+}
+@property(strong,nonatomic) UIView* bottomView;
+- (id)initWithTab:(NSArray *)backImages andClickImages:(NSArray *)highlightImages andViewControllers:(NSArray * )viewControllers;
+- (void)hiddenTab:(BOOL)hidden; //隐藏功能
+
+@end
+

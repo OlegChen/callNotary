@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" variant="6xAndEarlier" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserCenter">
+            <connections>
+                <outlet property="FenXiangBtn" destination="FaZ-ao-X2s" id="6tC-sF-o0G"/>
+                <outlet property="GNumberLaber" destination="37" id="51"/>
+                <outlet property="binNumberLabel" destination="33" id="49"/>
+                <outlet property="phoneNumberLabel" destination="32" id="48"/>
+                <outlet property="timeLabel" destination="35" id="47"/>
+                <outlet property="view" destination="1" id="24"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="录  音  币：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="28">
+                    <rect key="frame" x="35" y="80" width="63" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="赠送时长：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29">
+                    <rect key="frame" x="35" y="99.5" width="61.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="赠送空间：" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30">
+                    <rect key="frame" x="23" y="217" width="95" height="29"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=" phoneNum" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="32">
+                    <rect key="frame" x="90" y="37.5" width="65.5" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=" 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="33">
+                    <rect key="frame" x="103" y="80" width="11" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34">
+                    <rect key="frame" x="195.5" y="81" width="120" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.43971354166666665" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="mcY-ao-xOK"/>
+                        <constraint firstAttribute="width" constant="120" id="vXc-vn-hNA"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <state key="normal" title="充值">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="selected" backgroundImage=" ">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="充值图标">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="rechargeBtnClick:" destination="-1" eventType="touchUpInside" id="46"/>
+                    </connections>
+                </button>
+                <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="37">
+                    <rect key="frame" x="195" y="221" width="110" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57">
+                    <rect key="frame" x="174" y="300" width="138" height="41"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" image="btn_checkin.png">
+                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <state key="highlighted">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="signBtnClick:" destination="-1" eventType="touchUpInside" id="58"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FaZ-ao-X2s">
+                    <rect key="frame" x="10" y="300" width="138" height="41"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="btn_share.png">
+                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="fangXiangShiJian:" destination="-1" eventType="touchUpInside" id="tVG-YL-555"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4我的-头像" translatesAutoresizingMaskIntoConstraints="NO" id="KIZ-6d-6Qj">
+                    <rect key="frame" x="35" y="20" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="4qI-4Q-qPv"/>
+                        <constraint firstAttribute="width" constant="50" id="Kt3-de-dbE"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text=" *小时*分*秒" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35">
+                    <rect key="frame" x="101.5" y="99.5" width="69" height="14.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="29" firstAttribute="top" secondItem="28" secondAttribute="bottom" constant="5" id="3O5-nU-H5Q"/>
+                <constraint firstItem="33" firstAttribute="centerY" secondItem="28" secondAttribute="centerY" id="87e-UA-ez5"/>
+                <constraint firstItem="35" firstAttribute="leading" secondItem="29" secondAttribute="trailing" constant="5" id="BRU-Gv-mvH"/>
+                <constraint firstItem="32" firstAttribute="centerY" secondItem="KIZ-6d-6Qj" secondAttribute="centerY" id="EYS-0g-xxc"/>
+                <constraint firstItem="29" firstAttribute="leading" secondItem="28" secondAttribute="leading" id="Hlv-yf-sjn"/>
+                <constraint firstItem="28" firstAttribute="top" secondItem="KIZ-6d-6Qj" secondAttribute="bottom" constant="10" id="O4h-kn-Sue"/>
+                <constraint firstItem="KIZ-6d-6Qj" firstAttribute="leading" secondItem="1" secondAttribute="leading" constant="35" id="Tw2-xx-hY8"/>
+                <constraint firstItem="KIZ-6d-6Qj" firstAttribute="top" secondItem="1" secondAttribute="top" constant="20" id="Ume-s2-MFo"/>
+                <constraint firstItem="35" firstAttribute="centerY" secondItem="29" secondAttribute="centerY" id="d4q-MX-2q6"/>
+                <constraint firstItem="28" firstAttribute="leading" secondItem="KIZ-6d-6Qj" secondAttribute="leading" id="hwF-3k-blA"/>
+                <constraint firstItem="33" firstAttribute="leading" secondItem="28" secondAttribute="trailing" constant="5" id="lBe-Pj-sPq"/>
+                <constraint firstItem="34" firstAttribute="leading" secondItem="35" secondAttribute="trailing" constant="25" id="luc-ML-Smi"/>
+                <constraint firstItem="32" firstAttribute="leading" secondItem="KIZ-6d-6Qj" secondAttribute="trailing" constant="5" id="o0t-XZ-2FN"/>
+                <constraint firstItem="34" firstAttribute="bottom" secondItem="35" secondAttribute="bottom" constant="-3" id="q3g-bL-tXx"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="125.5" y="68.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name=" " width="16" height="16"/>
+        <image name="4我的-头像" width="42" height="42"/>
+        <image name="btn_checkin.png" width="138" height="41"/>
+        <image name="btn_share.png" width="138" height="41"/>
+        <image name="充值图标" width="111" height="27"/>
+    </resources>
+</document>

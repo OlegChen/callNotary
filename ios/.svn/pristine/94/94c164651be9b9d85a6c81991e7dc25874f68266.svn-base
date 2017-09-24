@@ -1,0 +1,181 @@
+//
+//  XZTabBarViewControler.m
+//  LDrama
+//
+//  Created by 肖 喆￼ on 12-11-20.
+//  Copyright (c) 2012年 肖 喆￼. All rights reserved.
+//
+
+#import "XZTabBarViewControler.h"
+#import <QuartzCore/QuartzCore.h>
+
+@interface XZTabBarViewControler ()
+
+@end
+
+@implementation XZTabBarViewControler
+@synthesize bottomView;
+
+
+- (void)dealloc {
+    
+//    RELEASE(topView);
+//    RELEASE(bottomView);
+//    RELEASE(tabs);
+//    RELEASE(tabsImages);
+//    RELEASE(clickImages);
+//    RELEASE(controllers);
+//    RELEASE(buttonBackGround);
+    
+    [topView release],topView = nil;
+    [bottomView release],bottomView = nil;
+    [tabs release], tabs = nil;
+    [tabsImages release],tabsImages = nil;
+    [clickImages release],clickImages = nil;
+    [controllers release], controllers = nil;
+    [buttonBackGround release],buttonBackGround = nil;
+    
+    [super dealloc];
+}
+
+- (id)initWithTab:(NSArray *)backImages andClickImages:(NSArray *)highlightImages andViewControllers:(NSArray *)viewControllers {
+    if (self = [super init]) {
+        controllers = [viewControllers retain];
+        tabsImages = [backImages retain];
+        clickImages = [highlightImages retain];
+    }
+    return self;
+}
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    
+    if (IS_IPHONE_5) {
+        
+        
+        if (IOS7_OR_LATER) {
+            topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 548+20)];
+            topView.backgroundColor = [UIColor whiteColor];
+            [self.view addSubview:topView];
+            bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 498.5+20, 320, 49.5)];
+            bottomView.backgroundColor = [UIColor clearColor];
+            [self.view addSubview:bottomView];
+        }else{
+            topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 548)];
+            topView.backgroundColor = [UIColor whiteColor];
+            [self.view addSubview:topView];
+            bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 498.5, 320, 49.5)];
+            bottomView.backgroundColor = [UIColor clearColor];
+            [self.view addSubview:bottomView];
+        }
+        
+    }else {
+        if (IOS7_OR_LATER) {
+            
+            topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+            topView.backgroundColor = [UIColor whiteColor];
+            [self.view addSubview:topView];
+            
+            bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 430.5, 320, 49.5)];
+            bottomView.backgroundColor = [UIColor clearColor];
+            [self.view addSubview:bottomView];
+            
+        }else{
+        topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 460)];
+        topView.backgroundColor = [UIColor whiteColor];
+        [self.view addSubview:topView];
+        
+        bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 410.5, 320, 49.5)];
+        bottomView.backgroundColor = [UIColor clearColor];
+        [self.view addSubview:bottomView];
+        }
+    }
+    
+    
+    UIImageView* bottomViewBackground = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bottom_bg.png"]];
+    
+    [bottomView addSubview:bottomViewBackground];
+    [bottomViewBackground release];
+    
+    CGFloat buttonWidth = 320.f/[controllers count];
+    CGFloat buttonHeight = 49.5f;
+    
+    for (int i = 0 ; i < [controllers count]; i++) {
+        
+        UIImage* normal = ((UIImageView *)[tabsImages objectAtIndex:i]).image;
+        UIImage* hilight = ((UIImageView *)[clickImages objectAtIndex:i]).image;
+        
+        UIButton* but = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        [but setBackgroundImage:normal forState:UIControlStateNormal];
+        [but setBackgroundImage:hilight forState:UIControlStateHighlighted];
+        [but setBackgroundImage:hilight forState:UIControlStateSelected];
+        [but setBackgroundImage:hilight forState:UIControlStateDisabled];
+        [but setBackgroundImage:hilight forState:(UIControlStateHighlighted|UIControlStateSelected)];
+        
+        but.frame = CGRectMake(buttonWidth * i,0, buttonWidth, buttonHeight);
+        
+        //特殊处理
+        if (i == 0) {
+            but.frame = CGRectMake(20,0, 69, buttonHeight);
+        }
+        if (i == 1) {
+            but.frame = CGRectMake(buttonWidth * i + 10,-15,
+                                   ((UIImageView *)[tabsImages objectAtIndex:i]).frame.size.width
+                                   ,((UIImageView *)[tabsImages objectAtIndex:i]).frame.size.height);
+        }
+        if (i == 2) {
+            but.frame = CGRectMake(230,0, 69, buttonHeight);
+        }
+        //特殊处理结束
+        
+        but.backgroundColor = [UIColor clearColor];
+        but.tag = i + 1;
+        [bottomView addSubview:but];
+        [but addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+        
+    }//end for
+    UIViewController* root = [controllers objectAtIndex:1];
+    root.view.frame = topView.frame;
+    [topView addSubview:root.view];
+}
+-(void)checkNetwork{
+    Reachability*r= [Reachability reachabilityWithHostName:@"www.baidu.com"];
+    switch ([r currentReachabilityStatus]) {
+        case 0:{
+            UIAlertView * alert=[[UIAlertView alloc] initWithTitle:@"提示" message:@"请检查您的网络连接" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+            break;}
+            
+        default:
+            break;
+    }
+
+}
+- (void)buttonClick:(UIButton *)but {
+    
+    [NSThread  detachNewThreadSelector:@selector(checkNetwork) toTarget:self withObject:nil];
+  
+    for (UIView* view in bottomView.subviews) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            UIButton* temp = (UIButton *)view;
+            if (but.tag != temp.tag) {
+                [temp setSelected:NO];
+            }else {
+                [but setSelected:YES];
+            }
+        }
+    }
+
+    UIViewController* root = [controllers objectAtIndex:but.tag - 1];
+    root.view.frame = topView.frame;
+    [topView addSubview:root.view];
+
+}
+- (void)hiddenTab:(BOOL)hidden
+{
+
+    bottomView.hidden = hidden;
+}
+@end

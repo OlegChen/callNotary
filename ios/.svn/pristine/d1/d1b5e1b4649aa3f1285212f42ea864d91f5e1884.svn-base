@@ -1,0 +1,28 @@
+//
+//  AddressCache.h
+//  notary
+//
+//  Created by 肖 喆 on 13-4-1.
+//  Copyright (c) 2013年 风雨者科技（北京）有限公司. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface AddressCache : NSObject
+{
+    NSMutableDictionary * _cardDic;
+    NSMutableArray *_listContent;
+    
+    //当个人有两个号码的时候 不重复记入
+    int _contactPersonCount;
+}
+@property (nonatomic,strong) NSMutableDictionary * cardDic;
+@property (nonatomic,strong) NSMutableArray * listContent;
+@property (nonatomic, readonly)int contactPersonCount;
+
++ (id)sharedInstance;
+
+- (void)initAddressBook;
+- (int)getAddressCount;
+
+@end

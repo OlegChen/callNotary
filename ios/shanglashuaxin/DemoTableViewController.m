@@ -1,0 +1,718 @@
+//
+// DemoTableViewController.m
+//
+// @author Shiki
+//
+
+
+#import "DemoTableViewController.h"
+#import "DemoTableHeaderView.h"
+#import "DemoTableFooterView.h"
+#import "seeDocumentViewController.h"
+@interface DemoTableViewController ()
+// Private helper methods
+- (void) addItemsOnTop;
+- (void) addItemsOnBottom;
+- (NSString *) createRandomValue;
+@end
+
+
+@implementation DemoTableViewController
+@synthesize items;
+
+- (void) viewDidLoad
+{
+  [super viewDidLoad];
+   self.jsonData = [[NSMutableData alloc]init];
+   self.title = @"申请公证记录";
+   self.view.backgroundColor=[UIColor whiteColor];
+   [self.tableView setBackgroundColor:[UIColor whiteColor]];
+   requestTag=0;
+    
+    UIView*view=[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 40)];
+    view.backgroundColor=[UIColor  colorWithRed:129./255.
+                                          green:198./255.
+                                           blue:251./255.
+                                          alpha:1.0f];
+    
+    NSArray*labelArr=[NSArray arrayWithObjects:@"序号",@"记录名称",@"当前状态",@"操作", nil];
+    for (int i = 0; i < 4; i++) {
+        UILabel*label=[[UILabel alloc] initWithFrame:CGRectMake(80*i, 7, 80, 30)];
+        label.backgroundColor=[UIColor clearColor];
+        label.textAlignment=NSTextAlignmentCenter;
+        label.font=[UIFont systemFontOfSize:13.0f];
+        label.text=[labelArr objectAtIndex:i];
+        label.textColor=[UIColor colorWithRed:49./255.
+                                        green:115./255.
+                                         blue:171./255.
+                                        alpha:1.0f];
+        [view addSubview:label];
+        
+    }
+    [self.view addSubview:view];
+
+  // set the custom view for "pull to refresh". See DemoTableHeaderView.xib.
+   NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"DemoTableHeaderView" owner:self options:nil];
+  //DemoTableHeaderView *headerView = (DemoTableHeaderView *)[nib objectAtIndex:0];
+  //self.headerView = headerView;
+  
+  // set the custom view for "load more". See DemoTableFooterView.xib.
+  nib = [[NSBundle mainBundle] loadNibNamed:@"DemoTableFooterView" owner:self options:nil];
+  DemoTableFooterView *footerView = (DemoTableFooterView *)[nib objectAtIndex:0];
+  self.footerView = footerView;
+  
+  // add sample items
+  items = [[NSMutableArray alloc] init];
+    NSString*tag=[NSString stringWithFormat:@"%d",requestTag];
+    [self asiRequest:tag];
+//  for (int i = 0; i < 3; i++)
+//    [items addObject:[self createRandomValue]];
+    UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(40.0f, 0.0f, 50.0f, 25.0f);
+    [btn setImage:[UIImage imageNamed:@"return.png" ]forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithCustomView:btn];
+    self.navigationItem.leftBarButtonItem = backButton;
+}
+-(void)back{
+   // [request cancel];
+   // [NSThread exit];
+    request.delegate=nil;
+        [self.navigationController popViewControllerAnimated:YES];
+
+}
+#pragma ASIHttpRequest Delegate methods
+-(void)asiRequest:(NSString*)startIndex{
+    
+    //查询可用公证申请包，供申请公证时选择接口
+    UserModel * user = [UserModel sharedInstance];
+    //request.shouldAttemptPersistentConnection   = YES;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:user.userID forKey:@"userID"];
+    [dic setObject:@"1" forKey:@"src"];
+    [dic setObject:APP_ID forKey:@"app_id"];
+    [dic setObject:VERSIONS forKey:@"v"];
+    [dic setObject:user.phoneNumber forKey:@"mobileNo"];
+    [dic setObject:startIndex forKey:@"startIndex"];
+    
+    NSString *resultMd5 = [URLUtil generateNormalizedString:dic];
+    NSString *sig = [URLUtil md5:[NSString stringWithFormat:@"%@%@",resultMd5,@"wqerf*6205"]];
+    
+    
+    NSString * urls = [NSString stringWithFormat:@"%@%@",ROOT_URL,@"qryGzRecords.action"];
+    NSURL * url = [NSURL URLWithString:urls];
+    NSLog(@"request URL is: %@",url);
+    request =  [[ASIFormDataRequest alloc] initWithURL:url];
+    request.tag=111;
+    [request setPostValue:user.userID forKey:@"userID"];
+    [request setPostValue:@"1" forKey:@"src"];
+    [request setPostValue:APP_ID forKey:@"app_id"];
+    [request setPostValue:VERSIONS forKey:@"v"];
+    [request setPostValue:user.phoneNumber forKey:@"mobileNo"];
+    [request setPostValue:startIndex forKey:@"startIndex"];
+    [request setPostValue:sig forKey:@"sig"];
+    request.delegate = self;
+    [request setRequestMethod:@"POST"];
+    [request startAsynchronous];
+    
+    
+    
+    
+    
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    if (nil != request) {
+        [request cancel];
+        request = nil;
+    }
+}
+
+#pragma mak - ASIHTTPRequestDelegate
+- (void)requestStart:(ASIHTTPRequest *)request
+{
+
+
+
+}
+- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
+{
+    
+    [_jsonData appendData:data];
+   // NSLog(@"-----_jsonData-%@",_jsonData);
+    
+}
+
+-(void)requestFinished:(ASIHTTPRequest *)request
+{
+    
+    
+    NSDictionary *jsonDic = [_jsonData objectFromJSONData];
+    NSLog(@"-----jsonDic-%@",jsonDic);
+    NSMutableArray*sendStrArr = [jsonDic objectForKey:@"data"];
+    for (id object in sendStrArr) {
+        [items addObject:object];
+    }
+    if (sendStrArr.count < 10){
+        self.canLoadMore = NO; // signal that there won't be any more items to load
+    }else{
+        self.canLoadMore = YES;
+    }//清空
+    [self.tableView  reloadData];
+    
+    [self loadMoreCompleted];
+    [_jsonData setLength:0];
+    
+   // [self performSelectorOnMainThread:@selector(updateUI) withObject:nil waitUntilDone:YES];
+   
+
+    
+  
+    
+    
+    
+    
+}
+-(void)updateUI{
+
+   
+    
+
+}
+
+#pragma mark - Pull to Refresh
+
+
+- (void) pinHeaderView
+{
+//  [super pinHeaderView];
+//  
+//  // do custom handling for the header view
+//  DemoTableHeaderView *hv = (DemoTableHeaderView *)self.headerView;
+//  [hv.activityIndicator startAnimating];
+//  hv.title.text = @"Loading...";
+}
+
+
+- (void) unpinHeaderView
+{
+  [super unpinHeaderView];
+  
+  // do custom handling for the header view
+  [[(DemoTableHeaderView *)self.headerView activityIndicator] stopAnimating];
+}
+
+// Update the header text while the user is dragging
+//
+- (void) headerViewDidScroll:(BOOL)willRefreshOnRelease scrollView:(UIScrollView *)scrollView
+{
+  //DemoTableHeaderView *hv = (DemoTableHeaderView *)self.headerView;
+//  if (willRefreshOnRelease)
+//    //hv.title.text = @"Release to refresh...";
+//  else
+//   // hv.title.text = @"Pull down to refresh...";
+}
+
+
+//
+// refresh the list. Do your async calls here.
+//
+- (BOOL) refresh
+{
+  if (![super refresh])
+    return NO;
+  
+  // Do your async call here
+  // This is just a dummy data loader:
+  [self performSelector:@selector(addItemsOnTop) withObject:nil afterDelay:2.0];
+  // See -addItemsOnTop for more info on how to finish loading
+  return YES;
+}
+
+
+#pragma mark - Load More
+
+// The method -loadMore was called and will begin fetching data for the next page (more). 
+// Do custom handling of -footerView if you need to.
+//
+- (void) willBeginLoadingMore
+{
+  DemoTableFooterView *fv = (DemoTableFooterView *)self.footerView;
+  [fv.activityIndicator startAnimating];
+}
+
+
+//
+// Do UI handling after the "load more" process was completed. In this example, -footerView will
+// show a "No more items to load" text.
+//
+- (void) loadMoreCompleted
+{
+  [super loadMoreCompleted];
+
+  DemoTableFooterView *fv = (DemoTableFooterView *)self.footerView;
+  [fv.activityIndicator stopAnimating];
+  
+  if (!self.canLoadMore) {
+    // Do something if there are no more items to load
+    
+    // We can hide the footerView by: [self setFooterViewVisibility:NO];
+    
+    // Just show a textual info that there are no more items to load
+      
+      UIImageView*image=[[UIImageView alloc] initWithFrame:CGRectMake((300-75)/2, 10, 75, 24)];
+      //image.backgroundColor=[UIColor redColor];
+      [image setImage:[UIImage imageNamed:@""]];
+      [fv addSubview:image];
+    fv.infoLabel.hidden = YES;
+  }
+}
+
+
+- (BOOL) loadMore
+{
+  if (![super loadMore])
+    return NO;
+  
+  // Do your async loading here
+  [self performSelector:@selector(addItemsOnBottom) withObject:nil afterDelay:0.0];
+  // See -addItemsOnBottom for more info on what to do after loading more items
+  
+  return YES;
+}
+
+
+#pragma mark - Dummy data methods 
+
+
+- (void) addItemsOnTop
+{
+//  for (int i = 0; i < 3; i++)
+//    [items insertObject:[self createRandomValue] atIndex:0];
+//  [self.tableView reloadData];
+//  
+//  // Call this to indicate that we have finished "refreshing".
+//  // This will then result in the headerView being unpinned (-unpinHeaderView will be called).
+//  [self refreshCompleted];
+}
+
+
+- (void) addItemsOnBottom
+{
+  
+     
+    requestTag+=10;
+    NSString*tag=[NSString stringWithFormat:@"%d",requestTag];
+    NSLog(@"----%@",tag);
+    [self asiRequest:tag];
+  
+//      
+//    thread = [[NSThread alloc]initWithTarget:self selector:@selector(downloadImage) object:nil];
+//    [thread start];
+  
+}
+-(void)downloadImage{
+
+   
+
+}
+- (NSString *) createRandomValue
+{
+  NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+  [dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+  
+  return [NSString stringWithFormat:@"%@ %@", [dateFormatter stringFromDate:[NSDate date]],
+          [NSNumber numberWithInt:rand()]];
+}
+
+
+#pragma mark - Standard TableView delegates
+
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    
+//    return 40;
+//    
+//}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//
+//       return view;
+//    
+//
+//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 60;
+}
+
+- (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+  return items.count;
+}
+
+
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+  static NSString *CellIdentifier = @"Cell";
+  //NSString *CellIdentifier = [NSString stringWithFormat:@"Cell%d%d", [indexPath section], [indexPath row]];//以indexPath来唯一确定cell
+  
+  UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+  if (cell == nil) {
+    cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+                                   reuseIdentifier:CellIdentifier] autorelease];
+      
+}
+    
+    NSArray *subviews = [[NSArray alloc] initWithArray:cell.contentView.subviews];
+    for (UIView *subview in subviews) {
+        [subview removeFromSuperview];
+    }
+    ///////////////
+    UIImageView*imageView=[[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 29, 24)];
+    [imageView setImage:[UIImage imageNamed:@"bg_no"]];
+    [cell.contentView addSubview:imageView];
+    
+    UILabel*xuLabel=[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 29, 24)];
+    xuLabel.backgroundColor=[UIColor clearColor];
+    xuLabel.tag=11;
+    xuLabel.textAlignment=NSTextAlignmentCenter;
+    xuLabel.font=[UIFont systemFontOfSize:13.0f];
+    xuLabel.textColor=[UIColor colorWithRed:39./255.
+                                      green:72./255.
+                                       blue:121./255.
+                                      alpha:1.0f];
+    [imageView addSubview:xuLabel];
+    
+    UILabel*nameLabel=[[UILabel alloc] initWithFrame:CGRectMake(70, 0, 80, 30)];
+    nameLabel.backgroundColor=[UIColor clearColor];
+    nameLabel.tag=22;
+    nameLabel.textAlignment=NSTextAlignmentLeft;
+    nameLabel.font=[UIFont systemFontOfSize:16.0f];
+    nameLabel.textColor=[UIColor colorWithRed:39./255.
+                                        green:72./255.
+                                         blue:121./255.
+                                        alpha:1.0f];
+    [cell.contentView addSubview:nameLabel];
+    
+    UILabel*timeLabel=[[UILabel alloc] initWithFrame:CGRectMake(60, 30, 120, 30)];
+    timeLabel.backgroundColor=[UIColor clearColor];
+    timeLabel.tag=33;
+    timeLabel.textAlignment=NSTextAlignmentCenter;
+    timeLabel.font=[UIFont systemFontOfSize:11.0f];
+    timeLabel.textColor=[UIColor colorWithRed:142./255.
+                                        green:142./255.
+                                         blue:142./255.
+                                        alpha:1.0f];
+    [cell.contentView addSubview:timeLabel];
+    
+    UILabel*statusLabel=[[UILabel alloc] initWithFrame:CGRectMake(160, 15, 120, 30)];
+    statusLabel.backgroundColor=[UIColor clearColor];
+    statusLabel.tag=44;
+    statusLabel.textAlignment=NSTextAlignmentCenter;
+    statusLabel.font=[UIFont systemFontOfSize:11.0f];
+    statusLabel.textColor=[UIColor colorWithRed:142./255.
+                                          green:142./255.
+                                           blue:142./255.
+                                          alpha:1.0f];
+    [cell.contentView addSubview:statusLabel];
+    
+    ////////////////////
+    UILabel*labelOne=(UILabel*)[cell.contentView viewWithTag:11];
+//    labelOne.text=[[items objectAtIndex:[indexPath row] ]objectForKey:@"packId"];
+     labelOne.text=[NSString stringWithFormat:@"%d",indexPath.row+1];
+    
+    UILabel*labelTwo=(UILabel*)[cell.contentView viewWithTag:22];
+    labelTwo.text=[[items objectAtIndex:[indexPath row] ]objectForKey:@"packName"];
+    
+    UILabel*labelThree=(UILabel*)[cell.contentView viewWithTag:33];
+    labelThree.text=[[items objectAtIndex:[indexPath row] ]objectForKey:@"createTime"];
+    
+    UILabel*labelFour=(UILabel*)[cell.contentView viewWithTag:44];
+    NSString*status=[[items objectAtIndex:[indexPath row] ]objectForKey:@"status"];
+    
+    if ([status isEqualToString:@"0"]) {
+        
+        
+      //  UILabel*labelFour=(UILabel*)[cell.contentView viewWithTag:44];
+        labelFour.text=@"未处理";
+        labelFour.textColor=[UIColor colorWithRed:52./255.
+                                            green:85./255.
+                                             blue:130./255.
+                                            alpha:1.0f];
+        
+        UIButton * customLeft = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        customLeft.tag=indexPath.row;
+        customLeft.frame = CGRectMake(250, 15, 65, 28);
+        [customLeft setBackgroundImage:[UIImage imageNamed:@"btn_cyan_4txt"] forState:UIControlStateNormal];
+        //[customLeft setBackgroundImage:[UIImage imageNamed:@"blue_over.png"] forState:UIControlStateSelected ];
+        [customLeft addTarget:self action:@selector(cancelApply:) forControlEvents:UIControlEventTouchDown];
+        [customLeft setTitle:@"取消申请" forState:UIControlStateNormal];
+        [customLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        customLeft.titleLabel.font = [UIFont systemFontOfSize: 11.0];
+        
+        [cell.contentView addSubview:customLeft];
+       
+
+    }
+    else if([status isEqualToString:@"1"]){
+        
+      
+    
+        labelFour.text=@"已受理";
+        labelFour.textColor=[UIColor colorWithRed:66./255.
+                                            green:135./255.
+                                             blue:40./255.
+                                            alpha:1.0f];
+        
+        UIButton * customLeft = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        customLeft.tag=indexPath.row;
+        customLeft.frame = CGRectMake(250, 15, 65, 28);
+        [customLeft setBackgroundImage:[UIImage imageNamed:@"btn_cyan_4txt"] forState:UIControlStateNormal];
+       
+        [customLeft addTarget:self action:@selector(notaryInform) forControlEvents:UIControlEventTouchDown];
+        [customLeft setTitle:@"公证告知" forState:UIControlStateNormal];
+        [customLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        customLeft.titleLabel.font = [UIFont systemFontOfSize: 11.0];
+        
+        [cell.contentView addSubview:customLeft];
+
+    
+    }
+    else if([status isEqualToString:@"2"]){
+        
+        labelFour.text=@"被驳回";
+        labelFour.textColor=[UIColor redColor];
+        
+        
+        
+    }else{
+        
+       
+    
+         labelFour.text=@"已取消";
+        UIButton * customLeft = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        customLeft.tag=indexPath.row;
+        customLeft.frame = CGRectMake(250, 15, 65, 28);
+        [customLeft setBackgroundImage:[UIImage imageNamed:@"btn_cyan_4txt"] forState:UIControlStateNormal];
+        //[customLeft setBackgroundImage:[UIImage imageNamed:@"blue_over.png"] forState:UIControlStateSelected ];
+        [customLeft addTarget:self action:@selector(againApply:) forControlEvents:UIControlEventTouchDown];
+        [customLeft setTitle:@"重新申请" forState:UIControlStateNormal];
+        [customLeft setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        customLeft.titleLabel.font = [UIFont systemFontOfSize: 11.0];
+        
+        [cell.contentView addSubview:customLeft];
+
+    
+    }
+  
+//    cell.textLabel.text = [[items objectAtIndex:[indexPath row] ]objectForKey:@"packName"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+  return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+     seeDocumentViewController*seeDocument=[[seeDocumentViewController alloc]initWithNibName:nil bundle:nil packId:[[items objectAtIndex:[indexPath row] ]objectForKey:@"packId"] packName:[[items objectAtIndex:[indexPath row] ]objectForKey:@"packName"]];
+     seeDocument.mark=@"0";
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    for (id object in cell.contentView.subviews) {
+       if ([object isKindOfClass:[UIButton class]]) {
+            UIButton*button=(UIButton*)object;
+            NSLog(@"------button%@",button.titleLabel.text);
+            NSString*textButton=button.titleLabel.text;
+          
+            if ([textButton isEqualToString:@"取消申请"]) {
+             seeDocument.mark=@"1";
+            }
+        }
+    }
+    [self.navigationController pushViewController:seeDocument animated:YES];
+    
+    NSString*indexPathTag=[NSString stringWithFormat:@"%d",indexPath.row];
+    NSUserDefaults*  defaultcount = [NSUserDefaults standardUserDefaults];
+    [defaultcount  setObject:indexPathTag forKey:@"indexPathTag"];
+   
+}
+-(void)againApply:(UIButton*)button{
+
+     tagTwo =button.tag;
+    
+  
+    //[[self.items objectAtIndex:tag]setObject:@"3" forKey:@"status"];
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"询问" message:@"是否确定重新申请公证" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消",nil];
+    alertView.tag=2222;
+    [alertView show];
+
+
+}
+-(void)notaryInform{
+
+    ZSYPopoverListInformView *listView = [[ZSYPopoverListInformView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+    listView.titleName.text = @"公证告知";
+    [listView show];
+    
+
+
+}
+-(void)cancelApply:(UIButton*)button{
+    tagone =button.tag;
+    
+    //[[self.items objectAtIndex:tag]setObject:@"3" forKey:@"status"];
+   
+    
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"询问" message:@"是否确定取消申请公证" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:@"取消",nil];
+    alertView.tag=1111;
+    [alertView show];
+
+
+
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+
+  
+    if (alertView.tag == 1111) {
+        
+        if (buttonIndex == 0) {
+              NSLog(@"点击了取消申请公证");
+             [self gzCanReAppRequest:@"0" packidtag:[[self.items objectAtIndex:tagone]objectForKey:@"packId"] requestTag:111];
+        }
+    }else if(alertView.tag == 2222){
+        if (buttonIndex == 0) {
+              NSLog(@"点击了重新申请公证");
+              [self gzCanReAppRequest:@"3" packidtag:[[self.items objectAtIndex:tagTwo]objectForKey:@"packId"] requestTag:222];
+        }
+    
+    }
+
+}
+- (void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:YES];
+    NSLog(@"viewWillAppear");
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"deleteCell" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver: self
+                                             selector: @selector(calldelete)
+                                                 name: @"deleteCell"
+                                               object: nil];
+
+
+
+}
+-(void)calldelete{
+   
+    NSUserDefaults*  defaultcount = [NSUserDefaults standardUserDefaults];
+	NSString*indexPathTag=[defaultcount  objectForKey:@"indexPathTag"];
+     NSLog(@"indexPathTag:%@",indexPathTag);
+    
+    NSMutableArray*tmpArr=[NSMutableArray arrayWithArray:items];
+    [tmpArr removeObjectAtIndex:[indexPathTag intValue]];
+    self.items=tmpArr;
+    [self.tableView reloadData];
+}
+#pragma ASIHttpRequest Delegate methods
+-(void)gzCanReAppRequest:(NSString*)startIndex packidtag:(NSString*)packid  requestTag:(int)tagrequest{
+    
+    //查询可用公证申请包，供申请公证时选择接口
+    UserModel * user = [UserModel sharedInstance];
+    //request.shouldAttemptPersistentConnection   = YES;
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+    [dic setObject:user.userID forKey:@"userID"];
+    [dic setObject:@"1" forKey:@"src"];
+    [dic setObject:APP_ID forKey:@"app_id"];
+    [dic setObject:VERSIONS forKey:@"v"];
+    [dic setObject:user.phoneNumber forKey:@"mobileNo"];
+    [dic setObject:packid forKey:@"packId"];
+    [dic setObject:startIndex forKey:@"gzStatus"];
+    
+    NSString *resultMd5 = [URLUtil generateNormalizedString:dic];
+    NSString *sig = [URLUtil md5:[NSString stringWithFormat:@"%@%@",resultMd5,@"wqerf*6205"]];
+    
+    
+    NSString * urls = [NSString stringWithFormat:@"%@%@",ROOT_URL,@"gzCanReApp.action"];
+    NSURL * url = [NSURL URLWithString:urls];
+    NSLog(@"request URL is: %@",url);
+    ASIFormDataRequest*request1 =  [[ASIFormDataRequest alloc] initWithURL:url];
+    request1.tag=tagrequest;
+    [request1 setPostValue:user.userID forKey:@"userID"];
+    [request1 setPostValue:@"1" forKey:@"src"];
+    [request1 setPostValue:APP_ID forKey:@"app_id"];
+    [request1 setPostValue:VERSIONS forKey:@"v"];
+    [request1 setPostValue:user.phoneNumber forKey:@"mobileNo"];
+    [request1 setPostValue:startIndex forKey:@"gzStatus"];
+    [request1 setPostValue:packid forKey:@"packId"];
+    [request1 setPostValue:sig forKey:@"sig"];
+    request1.delegate = self;
+    [request1 setRequestMethod:@"POST"];
+    [request1 setDidFailSelector:@selector(gzCanReAppRequestFail:)];
+    [request1 setDidFinishSelector:@selector(gzCanReAppRequestFinish:)];
+    [request1 setDidReceiveDataSelector:@selector(gzCanReAppRequestReceiveData:didReceiveData:)];
+    [request1 startAsynchronous];
+    
+    
+    
+    
+    
+}
+
+#pragma mak - ASIHTTPRequestDelegate
+- (void)gzCanReAppRequestReceiveData:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
+{
+    
+    [_jsonData appendData:data];
+    NSLog(@"-----_jsonData-%@",_jsonData);
+    
+}
+
+-(void)gzCanReAppRequestFinish:(ASIHTTPRequest *)gzrequest
+{
+    
+    
+        
+     NSLog(@"-----request.tag-%d",gzrequest.tag);
+    
+    if(gzrequest.tag == 111){
+    NSDictionary *jsonDic = [_jsonData objectFromJSONData];
+   
+    NSString*getStr= [[jsonDic objectForKey:@"data"]objectForKey:@"status"];
+    // NSLog(@"-----getStr-%@",getStr);
+    if ([getStr isEqualToString:@"0"]) {
+        NSMutableDictionary * mutable=[items objectAtIndex:tagone];
+        NSMutableDictionary*tmpDic  =[NSMutableDictionary dictionaryWithDictionary:mutable];
+        [tmpDic  setObject:@"3" forKey:@"status"];
+        NSMutableArray*tmpArr=[NSMutableArray arrayWithArray:items];
+        [tmpArr setObject:tmpDic atIndexedSubscript:tagone];
+        self.items=tmpArr;
+        
+        [self.tableView reloadData];
+    }
+    [_jsonData setLength:0];
+    
+    }else{
+        
+        NSMutableDictionary * mutable=[items objectAtIndex:tagTwo];
+        NSMutableDictionary*tmpDic  =[NSMutableDictionary dictionaryWithDictionary:mutable];
+        [tmpDic  setObject:@"0" forKey:@"status"];
+        NSMutableArray*tmpArr=[NSMutableArray arrayWithArray:items];
+        [tmpArr setObject:tmpDic atIndexedSubscript:tagTwo];
+        self.items=tmpArr;
+        
+        [self.tableView reloadData];
+
+    
+    
+    [_jsonData setLength:0];
+    }
+   // }
+    
+}
+-(void)gzCanReAppRequestFail:(ASIHTTPRequest*)request{
+
+
+
+}
+
+
+@end

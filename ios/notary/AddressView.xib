@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddressView">
+            <connections>
+                <outlet property="contentTable" destination="24" id="57"/>
+                <outlet property="search" destination="8" id="30"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <searchBar contentMode="redraw" placeholder="请输入搜索关键字" backgroundImage="搜索条背景" translatesAutoresizingMaskIntoConstraints="NO" id="8">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                    <color key="backgroundColor" red="0.97647058819999999" green="0.97647058819999999" blue="0.97647058819999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="s32-gm-glN"/>
+                    </constraints>
+                    <textInputTraits key="textInputTraits"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="16"/>
+                    </connections>
+                </searchBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="24">
+                    <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="55"/>
+                        <outlet property="delegate" destination="-1" id="56"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="24" secondAttribute="bottom" id="KUn-MS-meH"/>
+                <constraint firstItem="24" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="Miw-pM-xsx"/>
+                <constraint firstItem="8" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="RIc-1U-Tyy"/>
+                <constraint firstItem="24" firstAttribute="top" secondItem="8" secondAttribute="bottom" id="Z0M-bY-dxS"/>
+                <constraint firstAttribute="trailing" secondItem="8" secondAttribute="trailing" id="d9o-ko-rA1"/>
+                <constraint firstAttribute="trailing" secondItem="24" secondAttribute="trailing" id="qpy-Vd-gds"/>
+                <constraint firstItem="8" firstAttribute="top" secondItem="1" secondAttribute="top" id="tPn-QR-oxx"/>
+            </constraints>
+            <point key="canvasLocation" x="52.5" y="11.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="搜索条背景" width="7" height="39"/>
+    </resources>
+</document>

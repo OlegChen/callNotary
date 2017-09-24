@@ -1,0 +1,32 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "90e0f6d3-bd3d-a842-97be-cb3f8a4d790e++6196",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "90e0f6d3-bd3d-a842-97be-cb3f8a4d790e++6196" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "90e0f6d3-bd3d-a842-97be-cb3f8a4d790e++6196" : 9223372036854775807,
+    "37C921246E420F95726C6E1F278591B0D095C37E" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "7333397B-8C7C-47C8-9E2A-AE8160A48AE8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "90e0f6d3-bd3d-a842-97be-cb3f8a4d790e++6196" : "ios\/",
+    "37C921246E420F95726C6E1F278591B0D095C37E" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "notary",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "notary.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/git.oschina.net\/yaohuah\/phoneRecord-iOS.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "37C921246E420F95726C6E1F278591B0D095C37E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/www.4008895678.com:81\/svn\/appsino",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "90e0f6d3-bd3d-a842-97be-cb3f8a4d790e++6196"
+    }
+  ]
+}

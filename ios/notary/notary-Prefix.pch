@@ -1,0 +1,222 @@
+//
+// Prefix header for all source files of the 'notary' target in the 'notary' project
+//
+
+#import <Availability.h>
+
+
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+    #import <CoreData/CoreData.h>
+    #import <AddressBook/AddressBook.h>
+    #import <CoreText/CoreText.h>
+    #import <MobileCoreServices/MobileCoreServices.h>
+    #import <AssetsLibrary/AssetsLibrary.h>
+    #import <AVFoundation/AVFoundation.h>
+    #import <MediaPlayer/MediaPlayer.h>
+    #import <QuartzCore/QuartzCore.h>
+
+
+//添加的预编译
+#import "NotificationView.h"
+#import "ProofView.h"
+#import "SaveView.h"
+//#import "SettingView.h"
+#import "NdUncaughtExceptionHandler.h"
+#import "CustomNavigationBar.h"
+#import "CustomTabBar.h"
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+#import "ASIHTTPRequestDelegate.h"
+#import "ASIHTTPRequestConfig.h"
+#import "OSCNotice.h"
+#import "Tool.h"
+#import "AddressCard.h"
+#import "JSONKit.h"
+#import "UserModel.h"
+#import "DejalActivityView.h"
+#import "FolderModel.h"
+#import "DejalActivityView.h"
+#import "ASIHTTPRequest.h"
+#import "ASIFormDataRequest.h"
+#import "NSString+Extension.h"
+#import "Sandbox.h"
+#import "Config.h"
+#import "DataBaseManager.h"
+#import "DownloadFile.h"
+#import "URLUtil.h"
+#import "MobClick.h"
+#import "UIImage+compress.h"
+#import "PublicStatistics.h"
+#import "Reachability.h"
+
+
+#define PARSE_APPLICATION_ID @"y3I5ELWOshQnA1hfLeV7JzhoRHR3j2JgRpbr0qqd"
+
+#define PARSE_CLIENT_KEY @"V8zolRHrPGXGHjb6nbCClMUdvEI97l4tPXSq0kTY"
+
+//#define PUSH_ID @"1184675"
+//#define PUSH_API_KEY @"dr706i90Zh7xSz5opWW7DuY9"
+//#define PUSH_SECRET_KEY @"Ylt0rZlcwDO3AfulL61ZrevPGYD8PqMT"
+
+#if __LP64__ || (TARGET_OS_EMBEDDED && !TARGET_OS_IPHONE) || TARGET_OS_WIN32 || NS_BUILD_32_LIKE_64
+typedef long NSInteger;
+#else
+typedef int NSInteger;
+#endif
+
+//电话录音
+#define PUSH_ID @"5808299"
+#define PUSH_API_KEY @"ULkOIKHgVDi8IqcnDsH4Ve9D"
+#define PUSH_SECRET_KEY @"E4R9Ku9tVrG1GxMDy4fMTip6LsksqLaE"
+
+//友盟统计
+#define UMENG_APPKEY @"55a4733567e58eb0c70025b9"
+
+#define VERSIONS @"1.1"
+#define APP_ID   @"5555"
+#define ATTACH   @"wqerf*6205"
+#define Appsino @"appstore"
+
+#define SITE_RECORDING_NUMBER @"4008786688"
+#define DEFAULT_NUMBER @"4008786688"
+#define DATABASE @"store.rdb"
+
+
+#define DEFAULT_PWD           @"PWD"
+#define DEFAULT_PHONENUMBER   @"PHONENUMBER"
+#define DEFAULT_ISAUTOLOGIN   @"ISAUTOLOGIN"
+#define DEFAULT_ISRMBPWD      @"ISRMBPWD"
+
+#ifdef DEBUG
+#define debugLog(...) NSLog(@"%@",__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#define logmessage  NSLog(@"[%@ class],[%@],[line-%d]",[self class],NSStringFromSelector(_cmd),__LINE__)
+#else
+#define debugLog(...)
+#define debugMethod()
+#define logmessage
+#endif
+
+#define App (AppDelegate *)[[UIApplication sharedApplication] delegate]
+
+#define DEFAULT_IMAGE_COMPRESS 0.5f
+#define DEFAULT_FONT @"Hiragino Sans GB"
+
+//消息通知固定字符串
+#define Notification_NoticeInform @"Notification_NoticeInform"
+#define Notification_NoticeUpdate @"Notification_NoticeUpdate"
+#define Notification_TabClick @"Notification_TabClick"
+//检查下载的时候文件是否完整
+#define Notification_Filecomplete @"Notification_Filecomplete"
+
+#define Notification_NoticeUploadFileSuccess @"NoticeUploadFileSuccess"
+#define Notification_NoticeUploadingFile @"NoticeUploadingFile"
+
+#define Notification_NoticeDeleteFile @"NoticeUploadNoticeDeleteFile"
+#define Notification_NoticeDeleteAllFile @"Notification_NoticeDeleteAllFile"
+#define Notification_NoticeRestoreAllFile @"Notification_NoticeRestoreAllFile"
+#define Notification_NoticeLogInAgain @"Notification_LogInAgain"
+#define Notification_MoveFolder @"Notification_MoveFolder"
+
+#import "UIImage+XH.h"
+#import "UIBarButtonItem+XH.h"
+
+
+//判断iphone4
+#define IS_IPHONE_4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(320, 480), [[UIScreen mainScreen] currentMode].size) : NO)
+
+//判断 iphone版本
+#define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+//判断iphone6
+#define IS_IPHONE_6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+//判断iphone6+
+#define IS_IPHONE_6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+
+
+//适配ios7
+#define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
+
+
+//去log
+#ifdef DEBUG
+#else
+#define NSLog(...){};
+#endif
+
+//Server
+//
+//#define UPLOAD_SERVER_IP  @"192.168.30.100"
+//#define UPLOAD_SERVER_PORT 7878
+//
+//#define ROOT_URL @"http://192.168.30.100:8080/sinomini/"
+//#define TONGJI_ROOT_URL @"http://192.168.30.100:8080/sinomini/"
+
+//Server
+
+
+
+
+//#define UPLOAD_SERVER_IP  @"192.168.30.251"
+//#define UPLOAD_SERVER_PORT 7878
+//
+//#define ROOT_URL @"http://192.168.30.251:8080/sinomini/"
+//#define TONGJI_ROOT_URL @"http://192.168.30.251:8080/sinomini/"
+
+
+//注意必须要记得修改上面的版本号 VERSIONS
+#define UPLOAD_SERVER_IP  @"http://123.150.43.70/sinomini/"
+#define UPLOAD_SERVER_PORT 7878
+
+
+//生产环境
+//#define ROOT_URL @"http://m.4009991000.com/"
+#define ROOT_URL  @"http://118.31.237.120/interface/" ////@"http://123.150.43.70/sinomini/"
+#define TONGJI_ROOT_URL @"http://123.150.43.70/sinomini/"
+
+#define PUSH_URL @"sendBindInfo.action"
+#define LOGIN_URL @"login.action"
+#define REGIST_URL @"regInfo.action"
+#define FOLDER_LIST_URL @"evidenceRootList.action"
+#define UNLOGIN_URL @"logout.action"
+#define MESSAGE_URL @"valNumQry.action"
+#define USER_PACKAGE_MARGIN_URL @"feeQuery.action"
+#define SYSTEM_MESSAGE_URL @"sysMsgQry.action"
+#define SYSTEM_RECOMMEND_URL @"appRecommend.action"
+#define SYSTEM_ACTIVITY_URL @"activityQuery.action"
+
+#define CHANGE_PASSNUMBER_URL @"pwdmodify.action"
+#define CREATE_FOLDER_URL @"createfolder.action"
+#define GET_ROOTLIST_URL @"evidenceRootList.action"
+#define GET_FOLDERLIST_URL @"evidenceList.action"
+#define SEARCH_URL @"find.action"
+#define GET_USER_FREE @"feeQuery.action"
+#define USER_SIGN @"sign.action"
+#define FILE_DOWN_URL @"download.action"
+#define DELETE_FOLDER_URL @"delFolderAndFile.action"
+#define CLEAR_RECOVER_URL @"absDelete.action"
+#define RESTORE_RECOVER_URL @"restore.action"
+#define MESSAGE_RECOVER_URL @"contactCusCtr.action"
+#define MESSAGE_UPDATE_URL @"sysMsgUpdate.action"
+#define LOG_OUT_URL @"logout.action"
+#define PASSWORD_RESTORE @"resetPwd.action"
+#define PAY_INIT_ACTION @"payInit.action"
+#define APPLYGZ_URL @"applygz.action"
+#define SHARE_INFO @"qryShareInfo.action"
+#define SHARE_FILE @"shareFile.action"
+#define FENXIANGURL @"saveshare.action"
+#define SAVE_INFO @"saveUserExtendInfo.action"
+
+#define FIRSTAPPLICATION @"beginStartNum.action"
+#define STARTNUMBER @"startNum.action"
+#define USETIME @"singUseTime.action"
+#define RE_NAME @"proofFileRename.action"
+#define FILE_INFO @"fileInfo.action"
+#define RE_NAME_FOLDER @"proofFolderRename.action"
+#define EVIDENCE_ROOT_LIST @"evidenceFolderList.action"
+#define PRO_FOLDER_MOVE @"proFolderMove.action"
+#define PRO_FILE_MOVE @"proFileMove.action"
+#define SIGN_URL @"sign.action"
+#endif

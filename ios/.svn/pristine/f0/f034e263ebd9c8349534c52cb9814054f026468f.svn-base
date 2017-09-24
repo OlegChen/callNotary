@@ -1,0 +1,79 @@
+//
+//  AppDelegate.h
+//  notary
+//
+//  Created by 肖 喆 on 13-3-5.
+//  Copyright (c) 2013年 肖 喆. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+#import "BaseView.h"
+#import "XZTabBarViewControler.h"
+#import <ShareSDK/ShareSDK.h>
+#import "WXApi.h"
+#import <TencentOpenAPI/QQApiInterface.h>
+#import <TencentOpenAPI/TencentOAuth.h>
+//支付宝
+#import "AlixPayResult.h"
+#import "ChecProofListView.h"
+#import "ZSYPopoverListView.h"
+ 
+
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate>
+{
+    XZTabBarViewControler * _tabBar;
+    int _lastTabIndex;
+    NSMutableDictionary * _addressDic;
+    NSArray * _allKeys;
+    
+    NSMutableDictionary * _downloadRequest;    //存储当前所有下载对象  obj:DownloadFile key:FileModel.fId
+    NSMutableArray *  _fileModels;               //存储下载需要下载的FileModel
+    NSMutableArray * _folderArray;             //存储全局目录结构
+    
+    NSMutableArray * _uploadArray;             //存储全局的上传对象
+    NSMutableDictionary * _uploadSocket;       //存储当前所有上传对象 obj：uploadContiue key:FileModel.serverid
+    //支付宝
+    AlixPayResult *result;
+    
+    ChecProofListView*listView;
+    
+    NSDictionary *jsonDiction;
+    
+    UIImageView *logoImageView;
+    
+    UIImageView *logoImageView1;
+    UIButton *photoButton;
+
+}
+
+@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) XZTabBarViewControler * tabBar;
+@property (strong, nonatomic) NSMutableDictionary * addressDic;
+@property (strong, nonatomic) NSArray * allKeys;
+@property (strong, nonatomic) NSMutableDictionary * downloadRequest;
+@property (strong, nonatomic) NSMutableArray * fileModels;
+@property (strong, nonatomic) NSMutableArray * folderArray;
+@property (strong, nonatomic) NSMutableArray * uploadArray;
+@property (strong, nonatomic) NSMutableDictionary * uploadSocket;
+@property (strong, nonatomic) ZSYPopoverListView * ZSYPopver;
+@property (strong, nonatomic)  ProofView * proof;
+@property (nonatomic,retain)   ChecProofListView*listView;
+@property NSTimeInterval startTime;
+@property NSTimeInterval endTime;
+
+@property (strong,nonatomic)PublicStatistics * publicStatisticsStartNumber;
+@property (strong,nonatomic)PublicStatistics * publicStatisticsFirstStart;
+@property (strong,nonatomic)PublicStatistics * publicStatisticsUseTime;
+//活动
+@property (strong,nonatomic)NSMutableData * activityJsonData;
+@property (strong,nonatomic)NSDictionary *jsonDiction;
+@property (retain, nonatomic) NSString *photoURL;
+@property (retain, nonatomic) NSString *jumpURL;
+//支付宝
+@property (strong,nonatomic)NSMutableData * jsonData;
+@property (strong,nonatomic)UIImageView * logoImageView;
+
+- (void)initMainView;
+- (void)hiddenTab:(BOOL)isHidden;
++(void)sendPay2;
+@end

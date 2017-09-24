@@ -1,0 +1,376 @@
+//
+//  FaroeseView.m
+//  notary
+//
+//  Created by stian on 14/12/25.
+//  Copyright (c) 2014年 风雨者科技（北京）有限公司. All rights reserved.
+//
+
+#import "FaroeseView.h"
+#import "AppDelegate.h"
+@interface FaroeseView (){
+    UIButton       *submitBtn;
+//    UITextView     *feedbackView;
+    UILabel *wordCountLabel;//字数
+    UIControl   *control;
+}
+
+@property (strong, nonatomic) NSString *placeHoldText;
+@end
+@implementation FaroeseView
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
+    if (self) {
+        
+        self.title = @"法律咨询";
+        
+        // Custom initialization
+        self.hidesBottomBarWhenPushed = YES;
+        AppDelegate * delgate =  (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        [delgate hiddenTab:YES];
+//        _selectedCount = 0;
+//        _listContent = [NSMutableArray new];
+//        _filteredListContent = [NSMutableArray new];
+//        self.searchByName = [[NSMutableArray alloc] init];
+//        self.searchByPhone = [[NSMutableArray alloc] init];
+//        self.cardDic = [[NSMutableDictionary alloc]init];
+    }
+    return self;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [MobClick beginLogPageView:@"法律咨询页面"];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [MobClick endLogPageView:@"法律咨询页面"];
+}
+-(void)keyBoardShowCallBack:(NSNotification *)notification{
+    if (control == nil) {
+        control = [[UIControl alloc]initWithFrame:CGRectMake(0, 0, 320, 150)];
+        control.tag = 122;
+        control.backgroundColor = [UIColor clearColor];
+        [control addTarget:self action:@selector(hideKeyboard) forControlEvents:UIControlEventTouchUpInside];
+    }
+    [self.view insertSubview:control atIndex:0];
+    //    [self.view addSubview:control];
+}
+-(void)hideKeyboard{
+    [self.feedbackView resignFirstResponder];
+//    [passWordField resignFirstResponder];
+    [[self.view viewWithTag:122]removeFromSuperview];
+}
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(keyBoardShowCallBack:)
+                                                 name:UIKeyboardDidShowNotification object:nil];
+    self.navigationController.navigationBarHidden = NO;
+
+    UIButton * customLeft = [UIButton buttonWithType:UIButtonTypeCustom];
+    customLeft.frame = CGRectMake(0, 0, 40, 40);
+    [customLeft addTarget:self action:@selector(handleBackButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [customLeft setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    
+    UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeft];
+    self.navigationItem.leftBarButtonItem = leftButton;
+   
+    UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(15, 263, 268, 20)];
+    lab.textColor = [UIColor grayColor];
+    [lab setFont:[UIFont boldSystemFontOfSize:12.0f]];
+    lab.backgroundColor = [UIColor clearColor];
+    lab.lineBreakMode = NSLineBreakByCharWrapping;
+    lab.numberOfLines = 0;
+    lab.textAlignment = NSTextAlignmentLeft;
+    lab.text = @"2.咨询回复时间为周一至周五9:00-18:00";
+    [self.view addSubview:lab];
+    
+    lab = [[UILabel alloc]initWithFrame:CGRectMake(15, 216, 55, 20)];
+    lab.textAlignment = NSTextAlignmentLeft;
+    lab.textColor = [UIColor grayColor];
+    [lab setFont:[UIFont boldSystemFontOfSize:12.0f]];
+    lab.backgroundColor = [UIColor clearColor];
+    lab.lineBreakMode = NSLineBreakByCharWrapping;
+    lab.numberOfLines = 0;
+    lab.text = @"注：";
+    [self.view addSubview:lab];
+    
+    lab = [[UILabel alloc] initWithFrame:CGRectMake(15, 238, 250, 20)];
+    lab.textColor = [UIColor grayColor];
+    [lab setFont:[UIFont boldSystemFontOfSize:12.0f]];
+    lab.backgroundColor = [UIColor clearColor];
+    lab.lineBreakMode = NSLineBreakByCharWrapping;
+    lab.numberOfLines = 0;
+    lab.textAlignment = NSTextAlignmentLeft;
+    lab.text = @"1.每次咨询扣除120录音币";
+    [self.view addSubview:lab];
+    
+    lab = [[UILabel alloc]initWithFrame:CGRectMake(15, 293-5, 268, 20)];
+    lab.textColor = [UIColor grayColor];
+    [lab setFont:[UIFont boldSystemFontOfSize:12.0f]];
+    lab.backgroundColor = [UIColor clearColor];
+    lab.lineBreakMode = NSLineBreakByCharWrapping;
+    lab.numberOfLines = 0;
+    lab.textAlignment = NSTextAlignmentLeft;
+    lab.text = @"3.请在用户中心->消息查看咨询回复结果";
+    [self.view addSubview:lab];
+    
+//    3 请在用户中心-消息中查看咨询回复
+    
+    submitBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    submitBtn.frame = CGRectMake(15, 161, 290, 44);
+    [submitBtn setBackgroundImage:[UIImage imageNamed:@"button_send.png"] forState:UIControlStateNormal];
+//    [submitBtn setTitle:@"咨   询" forState:UIControlStateNormal];
+    [submitBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    submitBtn.titleLabel.font = [UIFont systemFontOfSize:22];
+    [submitBtn addTarget:self action:@selector(submitBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:submitBtn];
+    UIImageView *textViewbackImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"linkus_bg.png"]];
+    textViewbackImage.backgroundColor = [UIColor clearColor];
+    textViewbackImage.frame = CGRectMake(8, 20, 304, 126);
+    [self.view addSubview:textViewbackImage];
+    
+    if (IS_IPHONE_5) {
+        self.feedbackView = [[UITextView alloc]initWithFrame:CGRectMake(12, 24, 296, 95)];
+
+    }else {
+        self.feedbackView = [[UITextView alloc]initWithFrame:CGRectMake(12, 24, 296, 180)];
+
+    }
+//    self.feedbackView.backgroundColor =[UIColor greenColor];
+    self.feedbackView.delegate = self;
+    self.feedbackView.layer.borderColor = [UIColor grayColor].CGColor;
+//    self.feedbackView.layer.borderWidth =1.0;
+    self.feedbackView.layer.cornerRadius =7.0;
+    self.feedbackView.scrollEnabled = YES;//可否拖动
+    self.feedbackView.editable = YES;//可否编辑
+    self.feedbackView.keyboardType = UIKeyboardTypeDefault;
+    self.feedbackView.returnKeyType =UIReturnKeyDone;
+    self.feedbackView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:self.feedbackView];
+    [self setMyTextView];
+    
+//    wordCountLabel = [[UILabel alloc]initWithFrame:CGRectMake(200, 270, 105, 20)];
+//    wordCountLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+//    wordCountLabel.backgroundColor = [UIColor clearColor];
+//    wordCountLabel.textColor = [UIColor grayColor];
+//    wordCountLabel.text = @"还能输入100个字";
+//    wordCountLabel.font = [UIFont boldSystemFontOfSize:11];
+//    [wordCountLabel sizeToFit];
+//    [self.view addSubview:wordCountLabel];
+    // Do any additional setup after loading the view from its nib.
+}
+
+//设置初始的输入框缺省文字和字体颜色
+- (void)setMyTextView
+{
+    _placeHoldText = @"咨询提交后,我们会在一时间为您解答,请耐心等待!";
+    _feedbackView.textColor = [UIColor lightGrayColor];
+    _feedbackView.text = _placeHoldText;
+}
+//UITextView 的代理
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    logmessage;
+    if (_placeHoldText != nil) {
+        _placeHoldText = nil;
+        _feedbackView.text = nil;
+        _feedbackView.textColor = [UIColor blackColor];
+    }
+    return YES;
+}
+-(void)textViewDidChange:(UITextView *)textView{
+    [self updateWordCount];
+}
+-(void)updateWordCount{
+    NSInteger count =250 - ([_feedbackView.text length]);
+    wordCountLabel.text = [NSString stringWithFormat:@"还可输入%d字",count];
+
+    if (count <=0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"字符个数不能大于100" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alert show];
+        _feedbackView.text = [_feedbackView.text substringToIndex:250];
+        count = 250;
+        wordCountLabel.text = [NSString stringWithFormat:@"%d/100个字",count];
+    }
+//    wordCountLabel.text = [NSString stringWithFormat:@"还可输入%d字",count];
+//    if (count<0) {
+//        wordCountLabel.text = @"还能输入0个字";
+//        wordCountLabel.textColor = [UIColor redColor];
+//    }
+//    if (count == 0) {
+//        wordCountLabel.textColor = [UIColor redColor];
+//    }else{
+//        wordCountLabel.textColor = [UIColor grayColor];
+//    }
+    
+    [wordCountLabel sizeToFit];
+    wordCountLabel.frame = CGRectMake(235, 120, 320, 60);
+}
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    if ([text isEqualToString:@"\n"])
+    {
+        [self.feedbackView resignFirstResponder];
+
+        return NO;
+    }
+    NSString * toBeString = [self.feedbackView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    if (self.feedbackView == textView)
+    {
+        if ([toBeString length]> 250 ) {
+            //            textViewFN.text = [toBeString substringToIndex:140+[editingURL length]-20];
+            //                UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:@"超过最大字数不能输入了" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] autorelease];
+            //                [alert show];
+            return NO;
+        }
+    }
+    return YES;
+    
+}
+//判断字符串为空
+- (BOOL) isBlankString:(NSString *)string {
+    if (string == nil || string == NULL) {
+        return YES;
+    }
+    if ([string isKindOfClass:[NSNull class]]) {
+        return YES;
+    }
+    if ([[string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0) {
+        return YES;
+    }
+    return NO;
+}
+//提交
+-(void)submitBtnClick:(id)sender{
+    if (_placeHoldText == nil && ![self isBlankString:self.feedbackView.text]) {
+        UserModel * user = [UserModel sharedInstance];
+        NSString *phoneNum = user.phoneNumber;
+        NSMutableDictionary *dic = [[NSMutableDictionary alloc] init];
+        [dic setObject:APP_ID forKey:@"app_id"];
+        [dic setObject:VERSIONS forKey:@"v"];
+        [dic setObject:@"1" forKey:@"src"];
+        [dic setObject:phoneNum forKey:@"mobileNo"];
+        [dic setObject:user.userID forKey:@"userID"];
+        [dic setObject:@"law" forKey:@"action"];
+        [dic setObject:self.feedbackView.text forKey:@"feedbackMsg"];
+        NSString *result = [URLUtil generateNormalizedString:dic];
+        NSString *sig = [URLUtil md5:[NSString stringWithFormat:@"%@%@",result,ATTACH]];
+        
+        NSString *urls = [NSString stringWithFormat:@"%@%@",ROOT_URL,MESSAGE_RECOVER_URL];
+        NSURL *url = [NSURL URLWithString:urls];
+        NSLog(@"request URL is: %@",url);
+        ASIFormDataRequest *request =  [[ASIFormDataRequest alloc] initWithURL:url];
+        
+        [request setPostValue:APP_ID forKey:@"app_id"];
+        [request setPostValue:VERSIONS forKey:@"v"];
+        [request setPostValue:phoneNum forKey:@"mobileNo"];
+        [request setPostValue:@"1" forKey:@"src"];
+        [request setPostValue:sig forKey:@"sig"];
+        [request setPostValue:@"law" forKey:@"action"];
+        [request setPostValue:user.userID forKey:@"userID"];
+        [request setPostValue:self.feedbackView.text forKey:@"feedbackMsg"];
+        request.delegate = self;
+        [request setRequestMethod:@"POST"];
+        [request startAsynchronous];
+    }else {
+        [self alertWithMessage:@"请输入您要咨询的问题，再提交"];
+ 
+    }
+    [[NSNotificationCenter defaultCenter]postNotificationName:Notification_NoticeUploadFileSuccess object:nil];
+    //        }
+
+    //    NSLog(@"请先输入您的意见，再提交%@",self.textView.text);
+}
+#pragma mak - ASIHTTPRequestDelegate
+- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
+{
+    /*{
+     code = 0;
+     codeInfo = "";
+     data =     {
+     status = 0;
+     };
+     }*/
+    NSDictionary * jsonDic = [data objectFromJSONData];
+    NSLog(@"jsonDid %@",jsonDic);
+    NSString * code = [jsonDic objectForKey:@"code"];
+    NSString * codeInfo = [jsonDic objectForKey:@"codeInfo"];
+    if ([code intValue] == 0) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"感谢你的咨询" message:@"发送成功，是否返回上一级" delegate:self cancelButtonTitle:@"NO，继续咨询" otherButtonTitles:@"确定", nil];
+        alert.tag = 100;
+        [alert show];
+    }else {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:codeInfo delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 100) {
+        switch (buttonIndex) {
+            case 0:
+                NSLog(@"NO");
+                [_feedbackView resignFirstResponder];
+                [self setMyTextView];
+                break;
+            case 1:
+                NSLog(@"确定");
+                [self.navigationController popViewControllerAnimated:YES];
+                break;
+            default:
+                break;
+        }
+    }
+}
+-(void)requestFinished:(ASIHTTPRequest *)request
+{
+    NSLog(@"request Finish");
+    NSData *da = [request responseData];
+    JSONDecoder *jd = [[JSONDecoder alloc] init];
+    NSDictionary *ret = [jd objectWithData:da];
+    NSLog(@"retretretret ---- > %@",ret);
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    NSLog(@"request Failed");
+    [self alertWithMessage:@"发送失败，请检查网络后重新发送"];
+}
+- (void) alertWithMessage:(NSString *)msg
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示"
+                                                    message:msg
+                                                   delegate:nil
+                                          cancelButtonTitle:@"确定"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+- (void)handleBackButtonClick:(UIButton *)btn
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end

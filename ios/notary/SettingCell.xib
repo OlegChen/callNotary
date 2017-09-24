@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingCell"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" rowHeight="58" id="2" customClass="SettingCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2" id="6sM-yV-2q8">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="57.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="3">
+                        <rect key="frame" x="15" y="21" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="M0Z-sc-5cX"/>
+                            <constraint firstAttribute="height" constant="16" id="ujz-aE-amy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="21">
+                        <rect key="frame" x="46" y="21" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.26666666666666666" green="0.26666666666666666" blue="0.26666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </label>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="red.png" highlightedImage="red.png" translatesAutoresizingMaskIntoConstraints="NO" id="36">
+                        <rect key="frame" x="257" y="11" width="28" height="28"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="21" firstAttribute="leading" secondItem="3" secondAttribute="trailing" constant="15" id="F2T-PG-svb"/>
+                    <constraint firstItem="21" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" id="P4i-Dd-rLp"/>
+                    <constraint firstItem="3" firstAttribute="centerY" secondItem="6sM-yV-2q8" secondAttribute="centerY" id="bcJ-vH-b8r"/>
+                    <constraint firstItem="3" firstAttribute="leading" secondItem="6sM-yV-2q8" secondAttribute="leading" constant="15" id="hNv-go-5W7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="myContentLabel" destination="21" id="32"/>
+                <outlet property="myImageView" destination="36" id="42"/>
+                <outlet property="myLeftImage" destination="3" id="30"/>
+            </connections>
+            <point key="canvasLocation" x="34" y="122"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="red.png" width="28" height="28"/>
+    </resources>
+</document>

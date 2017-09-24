@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>7333397B-8C7C-47C8-9E2A-AE8160A48AE8</string>
+	<key>IDESourceControlProjectName</key>
+	<string>notary</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>37C921246E420F95726C6E1F278591B0D095C37E</key>
+		<string>https://git.oschina.net/yaohuah/phoneRecord-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ios/notary.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>37C921246E420F95726C6E1F278591B0D095C37E</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://git.oschina.net/yaohuah/phoneRecord-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>37C921246E420F95726C6E1F278591B0D095C37E</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>37C921246E420F95726C6E1F278591B0D095C37E</string>
+			<key>IDESourceControlWCCName</key>
+			<string>phoneRecord-iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>

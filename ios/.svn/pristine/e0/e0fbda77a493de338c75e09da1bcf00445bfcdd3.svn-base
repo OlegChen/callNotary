@@ -1,0 +1,271 @@
+//
+//  FileUploadView.m
+//  notary
+//
+//  Created by 肖 喆 on 13-3-21.
+//  Copyright (c) 2013年 风雨者科技（北京）有限公司. All rights reserved.
+//
+
+#import "FileUploadView.h"
+#import "AppDelegate.h"
+#import "UploadView.h"
+#import "NSData+Extension.h"
+
+/*
+    1.连接服务器，给文件名，文件总大小
+    2.如果不存在，返回0，如果存在返回已经上传的大小
+    3.重复上传问题，如果返回的已经上传的大小与文件大小相同，这提示用户已经上传成功。
+      192.168.30.5  8787
+ */
+
+@interface FileUploadView ()<UIAlertViewDelegate>
+
+- (NSString *)getFileName;
+- (void)initSock;
+- (NSString *)handlePhontName:(NSString *)path;
+- (NSString *)handleTimeStampAsString:(NSString *)path;
+- (void)handlePreViewImage:(NSURL *)path andModel:(FileModel *)model;
+
+//视频压缩
+- (void)compressVideo:(NSURL *)inputURL outputURL:(NSURL *)outputURL blockHandler:(void (^)(AVAssetExportSession*))handler;
+@end
+
+@implementation FileUploadView
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.title = @"本地上传";
+    self.navigationController.navigationBarHidden = NO;
+    AppDelegate * app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [app hiddenTab:YES];
+    
+    UIButton * customLeft = [UIButton buttonWithType:UIButtonTypeCustom];
+    customLeft.frame = CGRectMake(0, 0, 40, 40);
+    [customLeft addTarget:self action:@selector(handleBackButtonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [customLeft setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    
+    UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeft];
+    self.navigationItem.leftBarButtonItem = leftButton;
+    
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [MobClick beginLogPageView:@"文件选择"];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [MobClick endLogPageView:@"文件选择"];
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+- (IBAction)btnPhotoClick:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"免费赠送20M空间,超出部分5公证币/M" delegate:self cancelButtonTitle:@"取消上传" otherButtonTitles:@"确定上传", nil];
+    alert.tag = 10;
+    [alert show];
+}
+- (IBAction)btnDVClick:(id)sender
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"免费赠送20M空间,超出部分5公证币/M" delegate:self cancelButtonTitle:@"取消上传" otherButtonTitles:@"确定上传", nil];
+    alert.tag = 20;
+    [alert show];
+    
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == 0){
+        
+    }else if (buttonIndex == 1){
+        if (alertView.tag== 10){
+            UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;
+            
+            sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            _picker4Photo = [[UIImagePickerController alloc] init];
+            _picker4Photo.delegate = self;
+            _picker4Photo.allowsEditing = NO;
+            _picker4Photo.sourceType = sourceType;
+            [self presentModalViewController:_picker4Photo animated:YES];
+
+        }else if(alertView.tag == 20){
+            _picker4Video = [[UIImagePickerController alloc] init];
+            _picker4Video.delegate = self;
+            _picker4Video.allowsEditing = NO;
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary] == YES){
+                _picker4Video.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+                _picker4Video.mediaTypes = [NSArray arrayWithObject:(NSString *)kUTTypeMovie];
+                [self.navigationController presentModalViewController:_picker4Video animated:YES];
+            }
+        }
+    }
+}
+ #pragma mark UIImagePickerControllerDelegate
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    FileModel * model = [[FileModel alloc] init];
+    model.actionType = kUploadFile;
+    
+    
+    if (picker == _picker4Video) {
+        
+        NSURL * videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+        NSLog(@"videoURL %@",videoURL);
+        model.path = videoURL;
+        model.type = kVideoFile;
+        model.targetName = [videoURL absoluteString];
+        [self handlePreViewImage:videoURL andModel:model];
+        
+    }else {
+        
+        UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        NSString * fileName = [[NSString alloc] init];
+        if ([info objectForKey:UIImagePickerControllerReferenceURL]) {
+            
+            fileName = [[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString];
+            debugLog(fileName);
+        }else {
+            
+            fileName = [self handleTimeStampAsString:fileName];
+            
+        }
+        
+        model.image = image;
+        model.targetName = fileName;
+        model.type = kPhotoFile;
+//        model.path = [NSURL URLWithString:[[info objectForKey:UIImagePickerControllerReferenceURL] absoluteString]];
+   
+    }
+    
+    NSData * data = nil;
+    
+    if (model.type == kVideoFile) {
+        
+        data  = [NSData dataWithContentsOfURL:model.path];
+        
+    }else {
+
+        data = UIImageJPEGRepresentation(model.image,DEFAULT_IMAGE_COMPRESS);
+    }
+    
+    model.md5 = [data MD5String];
+    model.size = [NSString stringWithFormat:@"%d",data.length];
+    
+    data = nil;
+    
+    [picker dismissViewControllerAnimated:NO completion:^{
+        
+        UploadView * upload = nil;
+        
+        if (IS_IPHONE_5) {
+            upload = [[UploadView alloc] initWithNibName:@"UploadView-ip5" bundle:nil];
+        }else {
+            upload = [[UploadView alloc] initWithNibName:@"UploadView" bundle:nil];
+
+        }
+        upload.model = model;
+        if(IOS7_OR_LATER){
+        [self.navigationController.navigationBar setTranslucent:NO];
+        }
+        [self.navigationController pushViewController:upload animated:NO];
+        
+    }];
+
+}
+
+
+#pragma makr sock method
+- (void)initSock
+{
+    _sock = [[AsyncSocket alloc] initWithDelegate:self];
+    [_sock setRunLoopModes:[NSArray arrayWithObject:NSRunLoopCommonModes]];
+
+}
+
+//发送数据
+- (void)writeDataOnMainThread:(id)string
+{
+    NSData * cmdData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    [_sock writeData:cmdData withTimeout:-1 tag:0];
+}
+-(void)handleBackButtonClick:(UIButton *)but
+{
+    
+//    ProofView * proof = nil;
+//    if(IS_IPHONE_5) {
+//        proof = [[ProofView alloc] initWithNibName:@"ProofView-ip5" bundle:nil];
+//    }else{
+//        proof = [[ProofView alloc] initWithNibName:@"ProofView" bundle:nil];
+//    }
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
+}
+- (NSString *)handlePhontName:(NSString *)path
+{
+    NSArray *temp = [path componentsSeparatedByString:@"&ext="];
+	NSString *suffix = [temp lastObject];
+	
+	temp = [[temp objectAtIndex:0] componentsSeparatedByString:@"?id="];
+	
+	NSString *name = [temp lastObject];
+	
+	name = [name stringByAppendingFormat:@".%@",suffix];
+	return name;
+}
+- (NSString *)handleTimeStampAsString:(NSString *)path
+{
+    NSDate *nowDate = [NSDate date];
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"EEE-MMM-d"];
+    NSString *locationString = [df stringFromDate:nowDate];
+    return [locationString stringByAppendingFormat:@".png"];
+
+}
+- (void)compressVideo:(NSURL *)inputURL outputURL:(NSURL *)outputURL blockHandler:(void (^)(AVAssetExportSession*))handler
+{
+    AVURLAsset * asset = nil;//[AVURLAsset URLAssetWithURL:inputURL opti*****:nil];
+    
+    //压缩质量 高 中 低
+    //AVAssetExportPresetLowQuality
+    //AVAssetExportPresetMediumQuality 480 * 640
+    //AVAssetExportPresetHighestQuality
+    AVAssetExportSession * session = [[AVAssetExportSession alloc] initWithAsset:asset
+                                                                      presetName:AVAssetExportPresetMediumQuality];
+    session.outputURL = outputURL;
+    session.outputFileType = AVFileTypeQuickTimeMovie;
+    [session exportAsynchronouslyWithCompletionHandler:^(void)
+     {
+         handler(session);
+     }];
+}
+- (void)handlePreViewImage:(NSURL *)path andModel:(FileModel *)model
+{
+    AVURLAsset * asset = [[AVURLAsset alloc] initWithURL:path options:nil];
+    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    gen.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+    NSError *error = nil;
+    CMTime actualTime;
+    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    UIImage * img = [[UIImage alloc] initWithCGImage:image];
+    model.image = img;
+
+}
+@end
