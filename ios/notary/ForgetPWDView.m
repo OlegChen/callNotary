@@ -28,6 +28,9 @@ static int count = 60;
     [super viewDidLoad];
     self.title = @"忘记密码";
     
+    [self.btnPwd setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
+    [self.btnConfirm setBackgroundImage:[UIImage resizableImageWithName:@"蓝色按钮"] forState:UIControlStateNormal];
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage resizableImageWithName:@"标题栏背景"] forBarPosition:UIBarPositionTopAttached barMetrics:UIBarMetricsDefault];

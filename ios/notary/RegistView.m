@@ -58,6 +58,9 @@ static int count = 60;
 //    }else{
 //        [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"nav_bg.png"] forBarMetrics:UIBarMetricsDefault];
 //    }
+    self.btnVerify.frame =  CGRectMake(0, 0, 260, 40);
+    [self.btnVerify setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮" leftRatio:0.5 topRatio:0.5] forState:UIControlStateNormal];
+    [self.btnRegist setBackgroundImage:[UIImage resizableImageWithName:@"蓝色按钮" leftRatio:0.5 topRatio:0.5] forState:UIControlStateNormal];
 
     self.title = @"注册";
     
