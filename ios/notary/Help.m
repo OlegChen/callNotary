@@ -42,8 +42,8 @@
     self.navigationItem.hidesBackButton = YES;
     
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(40.0f, 0.0f, 50.0f, 25.0f);
-    [btn setImage:[UIImage imageNamed:@"return.png" ]forState:UIControlStateNormal];
+    btn.frame = CGRectMake(-10.0f, 0.0f, 30.0f, 25.0f);
+    [btn setImage:[UIImage imageNamed:@"左上角通用返回" ]forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = backButton;
@@ -66,9 +66,9 @@
 //    self.textView.autoresizingMask = UIViewAutoresizingFlexibleHeight;//自适应高度
     
     
-    
+
 //    [self.view addSubview: self.textView];//加入到整个页面中
-      CGRect cgrect=CGRectMake(0, 0,320, 416+(IS_IPHONE_5?88:0)); //初始化大小并自动释放
+      CGRect cgrect=CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64); //初始化大小并自动释放
 //    if (IOS7_OR_LATER) {
 //        cgrect=CGRectMake(0, 0.0f,320, 480+(IS_IPHONE_5?4:0)); //初始化大小并自动释放
 //    }
@@ -76,7 +76,7 @@
     [cache removeAllCachedResponses];
     
     webView = [[UIWebView alloc] initWithFrame:cgrect];
-    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://123.150.43.70/sinomini/help/help.html"]];
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://118.31.237.120/interface/help/help.html"]];
     
     
     //webView.backgroundColor = [UIColor redColor];

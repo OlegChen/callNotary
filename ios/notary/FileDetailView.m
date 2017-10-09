@@ -53,9 +53,9 @@
     self.jsonData = [[NSMutableData alloc]init];
     self.filename.numberOfLines=0;
     UIButton * customLeft = [UIButton buttonWithType:UIButtonTypeCustom];
-    customLeft.frame = CGRectMake(0, 0, 40, 40);
+    customLeft.frame = CGRectMake(-10, 0, 30, 40);
     [customLeft addTarget:self action:@selector(handleBackButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [customLeft setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [customLeft setImage:[UIImage imageNamed:@"左上角通用返回"] forState:UIControlStateNormal];
     UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeft];
     self.navigationItem.leftBarButtonItem = leftButton;
     
@@ -66,8 +66,8 @@
     
     //添加图层
     backView = [[UIView alloc] init];
-    CGFloat high = IS_IPHONE_5 ? 568 -49.5 : 480- 49.5;
-    backView.frame = CGRectMake(0, 0, 320, high);
+    CGFloat high =[UIScreen mainScreen].bounds.size.height - 49.5;
+    backView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, high);
     backView.alpha = 0.7;
     [backView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touch)]];
     backView.backgroundColor = [URLUtil colorWithHexString:@"#000000"];
@@ -75,8 +75,8 @@
     backView.hidden = YES;
     
     midView = [[UIView alloc] init];
-    CGFloat highY = IS_IPHONE_5 ? 160 : 100;
-    midView.frame = CGRectMake(40,highY, 240,150);
+    CGFloat highY =  ([UIScreen mainScreen].bounds.size.height - 150  ) / 2.0 - 64;
+    midView.frame = CGRectMake(50,highY, [UIScreen mainScreen].bounds.size.width - 100,150);
     midView.backgroundColor = [URLUtil colorWithHexString:@"#ffffff"];
     [self.view addSubview:midView];
     midView.hidden = YES;
@@ -91,7 +91,7 @@
     NSArray *arr = [NSArray arrayWithObjects:@"删 除",@"取 消",nil];
     for (int i = 0;i<2;i++){
         UIButton *btn = [[UIButton alloc] init];
-        btn.frame = CGRectMake(18,37+ i*44, 204, 35);
+        btn.frame = CGRectMake(20,37+ i*44, [UIScreen mainScreen].bounds.size.width - 40 - 100, 35);
         [btn setTitle:[arr objectAtIndex:i] forState:UIControlStateNormal];
         [btn setTitleColor:[UIColor blackColor]  forState:UIControlStateNormal];
         [btn addTarget:self action:@selector(VouClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -114,6 +114,13 @@
         [midView addSubview:btn];
     }
 
+    
+    [self.btnDownLoad setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
+    [self.btnRename setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
+    [self.btnMove setBackgroundImage:[UIImage resizableImageWithName:@"红色按钮"] forState:UIControlStateNormal];
+
+
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -222,7 +229,7 @@
         self.fileTypeImage.image = [UIImage imageNamed:[self getImageName:i]];
     }else{
         self.manLabel.hidden = self.outLabel.hidden = self.timeLabel.hidden = self.manNumber.hidden = self.outNumber.hidden = self.labTime.hidden = NO;
-        self.fileTypeImage.image = [UIImage imageNamed:@"document.png"];
+        self.fileTypeImage.image = [UIImage imageNamed:@"关于电话录音.png"];
         self.manNumber.text = [dic objectForKey:@"srcTel"];
         self.outNumber.text = [dic objectForKey:@"descTel"];
         self.labTime.text = [NSString stringWithFormat:@"%@秒",[dic objectForKey:@"duration"]];
@@ -454,20 +461,20 @@
 
 - (IBAction)rename:(id)sender
 {
-    if (IOS7_OR_LATER) {
+//    if (IOS7_OR_LATER) {
         ZSYTextPopView*RenameView = [[ZSYTextPopView alloc] initWithFrame:CGRectMake(0, 0, 250, 130)];
         RenameView.titleName.text = @"输入文件名";
         RenameView.maxLength=60;
         RenameView.tag=1;
         RenameView.myDelegate=self;
         [RenameView show];
-    }else{
-    
-        _alert4Rename = [[CustomAlertView alloc] initWithAlertTitle:@"输入文件名"];
-        _alert4Rename.delegate = self;
-        _alert4Rename.maxLength = 60;
-        [_alert4Rename show];
-    }
+//    }else{
+//
+//        _alert4Rename = [[CustomAlertView alloc] initWithAlertTitle:@"输入文件名"];
+//        _alert4Rename.delegate = self;
+//        _alert4Rename.maxLength = 60;
+//        [_alert4Rename show];
+//    }
    
 }
 //////////////yang//////

@@ -68,28 +68,28 @@
     
     isShowKeyBoard = YES;
     
-    if (IS_IPHONE_5) {
-        
-        
-        if (IOS7_OR_LATER) {
-            topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWith, 548+20)];
-            topView.backgroundColor = [UIColor whiteColor];
-            [self.view addSubview:topView];
-            bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 498.5+20, ScreenWith, 49.5)];
-            bottomView.backgroundColor = [UIColor clearColor];
-            [self.view addSubview:bottomView];
-        }else{
-            topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWith, 548)];
-            topView.backgroundColor = [UIColor whiteColor];
-            [self.view addSubview:topView];
-            bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 498.5, ScreenWith, 49.5)];
-            bottomView.backgroundColor = [UIColor clearColor];
-            [self.view addSubview:bottomView];
-        }
-        
-    }else {
-        if (IOS7_OR_LATER) {
-            
+//    if (IS_IPHONE_5) {
+//
+//
+//        if (IOS7_OR_LATER) {
+//            topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWith, 548+20)];
+//            topView.backgroundColor = [UIColor whiteColor];
+//            [self.view addSubview:topView];
+//            bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 498.5+20, ScreenWith, 49.5)];
+//            bottomView.backgroundColor = [UIColor clearColor];
+//            [self.view addSubview:bottomView];
+//        }else{
+//            topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWith, 548)];
+//            topView.backgroundColor = [UIColor whiteColor];
+//            [self.view addSubview:topView];
+//            bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, 498.5, ScreenWith, 49.5)];
+//            bottomView.backgroundColor = [UIColor clearColor];
+//            [self.view addSubview:bottomView];
+//        }
+//
+//    }else {
+//        if (IOS7_OR_LATER) {
+//
             topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWith, ScreenHeight)];
             topView.backgroundColor = [UIColor whiteColor];
             [self.view addSubview:topView];
@@ -98,16 +98,16 @@
             bottomView.backgroundColor = [UIColor clearColor];
             [self.view addSubview:bottomView];
             
-        }else{
-        topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWith, ScreenHeight - 20)];
-        topView.backgroundColor = [UIColor whiteColor];
-        [self.view addSubview:topView];
-        
-        bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight - 20 - 49.5, ScreenWith, 49.5)];
-        bottomView.backgroundColor = [UIColor clearColor];
-        [self.view addSubview:bottomView];
-        }
-    }
+//        }else{
+//            topView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWith, ScreenHeight - 20)];
+//            topView.backgroundColor = [UIColor whiteColor];
+//            [self.view addSubview:topView];
+//
+//            bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, ScreenHeight - 20 - 49.5, ScreenWith, 49.5)];
+//            bottomView.backgroundColor = [UIColor clearColor];
+//            [self.view addSubview:bottomView];
+//        }
+//    }
     
     
     UIImage *image = [UIImage resizableImageWithName:@"菜单栏左和右背景.png"];

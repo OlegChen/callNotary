@@ -151,8 +151,8 @@
     
     self.navigationItem.hidesBackButton = YES;
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(40.0f, 0.0f, 50.0f, 25.0f);
-    [btn setImage:[UIImage imageNamed:@"return.png" ]forState:UIControlStateNormal];
+    btn.frame = CGRectMake(-10.0f, 0.0f, 30.0f, 25.0f);
+    [btn setImage:[UIImage imageNamed:@"左上角通用返回" ]forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = backButton;
@@ -476,12 +476,12 @@
 //                        Help *helpVC = [[Help alloc] init];
 //                        [self.navigationController pushViewController:helpVC animated:YES];
                         ContactUs *contacUsVC = nil;
-                        if (IS_IPHONE_5) {
-                            contacUsVC = [[ContactUs alloc] initWithNibName:@"ContactUs-ip5" bundle:nil];
-                        }else
-                        {
+//                        if (IS_IPHONE_5) {
+//                            contacUsVC = [[ContactUs alloc] initWithNibName:@"ContactUs-ip5" bundle:nil];
+//                        }else
+//                        {
                             contacUsVC = [[ContactUs alloc] initWithNibName:@"ContactUs" bundle:nil];
-                        }
+//                        }
                         [self.navigationController pushViewController:contacUsVC animated:YES];
                         
                     }
@@ -489,12 +489,12 @@
                     case 2:
                     {
                         About *aboutVC  = nil;
-                        if (IS_IPHONE_5) {
-                            aboutVC = [[About alloc] initWithNibName:@"About-ip5" bundle:nil];
-                        }else
-                        {
+//                        if (IS_IPHONE_5) {
+//                            aboutVC = [[About alloc] initWithNibName:@"About-ip5" bundle:nil];
+//                        }else
+//                        {
                             aboutVC = [[About alloc] initWithNibName:@"About" bundle:nil];
-                        }
+//                        }
                         [self.navigationController pushViewController:aboutVC animated:YES];
                     }
                         break;

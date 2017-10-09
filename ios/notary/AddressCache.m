@@ -176,8 +176,12 @@ static AddressCache * instance;
                         NSLog(@"---[(__bridge NSString *)value telephoneWithReformat]-%@",[(__bridge NSString *)value telephoneWithReformat]);
                         card.tel = [(__bridge NSString *)value telephoneWithReformat];
                         
-                        
+                        card.tel = [[card.tel componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] componentsJoinedByString:@""];
 #pragma - mark 保存 数据库
+                        
+//                        if ([card.name isEqualToString:@"李果"]) {
+//
+//                        }
                         
                         //[Address_Sqlite_Tool insertAddressWithName:card.name phoneNum:card.tel];
                         

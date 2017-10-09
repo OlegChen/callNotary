@@ -243,7 +243,7 @@ static FMDatabase *_db;
 
     FMResultSet *set = nil;
     
-     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_address WHERE name like '%@%%' or phoneNum like '%@%%'",str,str];//模糊查询，查找alpha中 以 item.dream_keyword 开头的内容
+     NSString *sql = [NSString stringWithFormat:@"SELECT * FROM t_address WHERE name like '%%%@%%' or phoneNum like '%%%@%%'",str,str];//模糊查询，查找alpha中 以 item.dream_keyword 开头的内容
     
     set = [_db executeQuery:sql];
     

@@ -642,10 +642,11 @@
     if (self.searchDataArr.count >= 1) {
         
         _isFilter = YES;
-        [_contentTable reloadData];
+    }else{
+        
     }
     
-   
+   [_contentTable reloadData];
 }
 
 #pragma mark UITableViewDataSource UITableViewDelegate  methods
@@ -1192,8 +1193,9 @@
 
 - (void)CallWithNum:(NSString *)num name:(NSString *)name{
     
+    NSString *numStr = [num stringByReplacingOccurrencesOfString:@"" withString:@""];
     
-    if ([num hasPrefix:@"0"]) {
+    if ([numStr hasPrefix:@"0"]) {
         
         
         
@@ -1202,7 +1204,7 @@
         [Call_Note_sqliteTool insertCall_NoteWithName:name phoneNum:num call_time:time];
         
         
-        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@",Call_note_Cell.getTransferTel,num];
+        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@",Call_note_Cell.getTransferTel,numStr];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:number]];
     }
     else if (num.length <=9){
@@ -1226,7 +1228,7 @@
     else{
         
         
-        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@",Call_note_Cell.getTransferTel,num];
+        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@",Call_note_Cell.getTransferTel,numStr];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:number]];
         
         //记录 通话记录

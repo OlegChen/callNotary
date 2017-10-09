@@ -49,49 +49,49 @@ static long      token_time;
 @implementation AppDelegate
 @synthesize listView;
 
-- (void)initAddressBook {
-    AddressCache * addressCache = [AddressCache sharedInstance];
-    
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        
-        
-        
-        //通讯录权限
-        CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-        switch (status) {
-            case CNAuthorizationStatusNotDetermined: {
-                // 用户尚未就应用程序是否可以访问联系人数据做出选择。
-                CNContactStore *store = [[CNContactStore alloc] init];
-                [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
-                    if (granted) {
-                        // 授权成功
-                        [addressCache initAddressBook];
-
-                    }else {
-                        // 未授权访问通讯录！
-                        return ;
-                    }
-                    
-                }];
-                
-            }
-                break;
-            case CNAuthorizationStatusRestricted: // 用户无法更改此应用程序的状态，可能是由于主动限制（如父母控制）。
-                return ;
-                break;
-            case CNAuthorizationStatusDenied: // 用户明确拒绝对应用程序的联系人数据的访问。
-                return ;
-                break;
-            case CNAuthorizationStatusAuthorized: // 该应用程序被授权访问联系人数据。
-                return ;
-                break;
-                
-            default:
-                break;
-        }
-    });
-    
-}
+//- (void)initAddressBook {
+//    AddressCache * addressCache = [AddressCache sharedInstance];
+//
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//
+//
+//
+//        //通讯录权限
+//        CNAuthorizationStatus status = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+//        switch (status) {
+//            case CNAuthorizationStatusNotDetermined: {
+//                // 用户尚未就应用程序是否可以访问联系人数据做出选择。
+//                CNContactStore *store = [[CNContactStore alloc] init];
+//                [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
+//                    if (granted) {
+//                        // 授权成功
+//                        [addressCache initAddressBook];
+//
+//                    }else {
+//                        // 未授权访问通讯录！
+//                        return ;
+//                    }
+//
+//                }];
+//
+//            }
+//                break;
+//            case CNAuthorizationStatusRestricted: // 用户无法更改此应用程序的状态，可能是由于主动限制（如父母控制）。
+//                return ;
+//                break;
+//            case CNAuthorizationStatusDenied: // 用户明确拒绝对应用程序的联系人数据的访问。
+//                return ;
+//                break;
+//            case CNAuthorizationStatusAuthorized: // 该应用程序被授权访问联系人数据。
+//                return ;
+//                break;
+//
+//            default:
+//                break;
+//        }
+//    });
+//
+//}
 
 - (void)initMainView
 {
@@ -230,9 +230,9 @@ static long      token_time;
     [Config setDefaultHandler];
     
     //友盟统计
-    [self umengTrack];
+//    [self umengTrack];
     //检查更新
-    [MobClick checkUpdate];
+//    [MobClick checkUpdate];
     
     
     //处理未捕获异常
@@ -270,7 +270,7 @@ static long      token_time;
     
     //初始化全局address
     AddressCache * addressCache = [AddressCache sharedInstance];
-    [addressCache initAddressBook];
+//    [addressCache initAddressBook];
     
     LoginView * log = nil;
     
@@ -311,15 +311,15 @@ static long      token_time;
     // [BPush setAccessToken:@"3.ad0c16fa2c6aa378f450f54adb08039.2592000.1367133742.282335-602025"];  // 可选。api key绑定时不需要，也可在其它时机调用
     
 
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
-        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
-        settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
-                                                                            categories:nil]];
-        [[UIApplication sharedApplication] registerForRemoteNotifications];
-    }else{
-        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
-        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
-    }
+//    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+//        [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
+//        settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+//                                                                            categories:nil]];
+//        [[UIApplication sharedApplication] registerForRemoteNotifications];
+//    }else{
+//        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+//    }
     
     // App 是用户点击推送消息启动
     NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -362,6 +362,8 @@ static long      token_time;
     
     
 }
+
+#warning -----------    要改    -----------
 
 -(void)updateVersions{
     

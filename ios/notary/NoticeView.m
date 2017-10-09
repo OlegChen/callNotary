@@ -44,9 +44,9 @@
     [self.view addSubview:qqlable];
     
     UIButton * customLeft = [UIButton buttonWithType:UIButtonTypeCustom];
-    customLeft.frame = CGRectMake(0, 0, 40, 40);
+    customLeft.frame = CGRectMake(0, 0, 20, 40);
     [customLeft addTarget:self action:@selector(handleBackButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [customLeft setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [customLeft setImage:[UIImage imageNamed:@"左上角通用返回"] forState:UIControlStateNormal];
     
     UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeft];
     self.navigationItem.leftBarButtonItem = leftButton;

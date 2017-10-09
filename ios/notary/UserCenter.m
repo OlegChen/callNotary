@@ -503,10 +503,10 @@
     
     
     UIButton *brnLeft = [UIButton buttonWithType:UIButtonTypeCustom];
-    brnLeft.frame = CGRectMake(0, 0, 50, 25);
+    brnLeft.frame = CGRectMake(0, 0, 30, 25);
     brnLeft.titleLabel.textAlignment=NSTextAlignmentCenter;
     brnLeft.titleLabel.font=[UIFont systemFontOfSize:18.0f];
-    [brnLeft setImage:[UIImage imageNamed:@"return.png"] forState:UIControlStateNormal];
+    [brnLeft setImage:[UIImage imageNamed:@"左上角通用返回"] forState:UIControlStateNormal];
    
     [brnLeft setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     //    [brnLeft setImage:[UIImage imageNamed:@"btn_msg.png"] forState:UIControlStateNormal];

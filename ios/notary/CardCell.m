@@ -89,7 +89,7 @@
     if ([self.tel.text hasPrefix:@"0"]) {
         
     
-        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@",CardCell.getTransferTel,self.tel.text];
+        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@",CardCell.getTransferTel,[self.tel.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:number]];
         
         //记录 通话记录
@@ -118,7 +118,7 @@
     else{
         
         
-        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@",CardCell.getTransferTel,self.tel.text];
+        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@",CardCell.getTransferTel,[self.tel.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
         
         NSLog(@"%@",CardCell.getTransferTel);
         

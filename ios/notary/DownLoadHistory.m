@@ -60,8 +60,8 @@ static FileModel * tmpFileModel = nil;
     self.navigationItem.hidesBackButton = YES;
     
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(40.0f, 0.0f, 50.0f, 25.0f);
-    [btn setImage:[UIImage imageNamed:@"return.png" ]forState:UIControlStateNormal];
+    btn.frame = CGRectMake(-10.0f, 0.0f, 30.0f, 25.0f);
+    [btn setImage:[UIImage imageNamed:@"左上角通用返回" ]forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = backButton;

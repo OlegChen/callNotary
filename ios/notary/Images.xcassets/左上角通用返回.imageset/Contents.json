@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "login640960.png"
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "左上角通用返回.png",
       "scale" : "2x"
     },
     {

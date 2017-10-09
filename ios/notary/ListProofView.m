@@ -130,9 +130,9 @@
 
     
     UIButton * customLeft = [UIButton buttonWithType:UIButtonTypeCustom];
-    customLeft.frame = CGRectMake(0, 0, 40, 40);
+    customLeft.frame = CGRectMake(-10, 0, 20, 40);
     [customLeft addTarget:self action:@selector(handleBackButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [customLeft setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+    [customLeft setImage:[UIImage imageNamed:@"左上角通用返回"] forState:UIControlStateNormal];
     
     UIBarButtonItem * leftButton = [[UIBarButtonItem alloc] initWithCustomView:customLeft];
     self.navigationItem.leftBarButtonItem = leftButton;
@@ -150,9 +150,9 @@
         [self.view addSubview:navBar];
         
         UIButton *  mLeft = [UIButton buttonWithType:UIButtonTypeCustom];
-        mLeft.frame = CGRectMake(20, 20, 40, 40);
+        mLeft.frame = CGRectMake(-10, 20, 30, 40);
         [mLeft addTarget:self action:@selector(handleBackButtonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [mLeft setImage:[UIImage imageNamed:@"return"] forState:UIControlStateNormal];
+        [mLeft setImage:[UIImage imageNamed:@"左上角通用返回"] forState:UIControlStateNormal];
         [navBar addSubview:mLeft];
         if (!self.isHuiFloder){
         mRight = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -730,8 +730,8 @@
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
 {
     
-    [self handleKeyborad:NO];
-    _isShowKeyBorad = NO;
+//    [self handleKeyborad:NO];
+//    _isShowKeyBorad = NO;
     
     //    [_search setShowsCancelButton:YES animated:YES];
     //
