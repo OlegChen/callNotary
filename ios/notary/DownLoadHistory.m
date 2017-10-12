@@ -570,7 +570,7 @@ static FileModel * tmpFileModel = nil;
                 cell.labName.text = file.name;
             }
             */
-            [cell.imageTitle setImage:[UIImage imageNamed:@"icon_call"]];
+            [cell.imageTitle setImage:[UIImage imageNamed:@"111"]];
         }
         else {
             

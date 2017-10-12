@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DownloadCell"/>
@@ -11,57 +16,89 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3" id="njw-6h-hXv">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="84"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="84.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon_picture.png" id="4">
-                        <rect key="frame" x="15" y="17" width="50" height="50"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="icon_picture.png" translatesAutoresizingMaskIntoConstraints="NO" id="4">
+                        <rect key="frame" x="15" y="17" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="H6w-IL-njP"/>
+                            <constraint firstAttribute="width" constant="40" id="JzN-gs-3hU"/>
+                        </constraints>
                     </imageView>
-                    <progressView opaque="NO" contentMode="scaleToFill" id="11">
-                        <rect key="frame" x="78" y="40" width="194" height="2"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <progressView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="11">
+                        <rect key="frame" x="78" y="40" width="222" height="2"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="98P-Uw-J76"/>
+                        </constraints>
                     </progressView>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="15">
-                        <rect key="frame" x="79" y="4" width="212" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15">
+                        <rect key="frame" x="69" y="4" width="40" height="18"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="41">
-                        <rect key="frame" x="79" y="58" width="75" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="41">
+                        <rect key="frame" x="69" y="58" width="33" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="soX-9y-1ie"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="46">
-                        <rect key="frame" x="189" y="58" width="120" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="46">
+                        <rect key="frame" x="278" y="58" width="31" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="huy-yt-uF8"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="line_offlineguide.png" id="173">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="line_offlineguide.png" translatesAutoresizingMaskIntoConstraints="NO" id="173">
                         <rect key="frame" x="0.0" y="85" width="320" height="1"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="lsS-Sd-Ho7"/>
+                        </constraints>
                     </imageView>
-                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="179">
+                    <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="179">
                         <rect key="frame" x="73" y="34" width="184" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="183">
-                        <rect key="frame" x="80" y="21" width="111" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="183">
+                        <rect key="frame" x="70" y="21" width="24" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="w9F-p8-oWg"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </label>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="173" secondAttribute="bottom" constant="-1.5" id="0Ig-HX-og7"/>
+                    <constraint firstItem="41" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="14" id="7gB-wJ-vcg"/>
+                    <constraint firstItem="4" firstAttribute="leading" secondItem="njw-6h-hXv" secondAttribute="leading" constant="15" id="DSf-fI-PdM"/>
+                    <constraint firstAttribute="trailing" secondItem="46" secondAttribute="trailing" constant="11" id="ETA-cs-7r9"/>
+                    <constraint firstItem="4" firstAttribute="top" secondItem="njw-6h-hXv" secondAttribute="top" constant="17" id="IM6-NW-fbe"/>
+                    <constraint firstItem="183" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="15" id="MSv-U1-0Gm"/>
+                    <constraint firstItem="15" firstAttribute="leading" secondItem="4" secondAttribute="trailing" constant="14" id="U31-UV-v10"/>
+                    <constraint firstItem="173" firstAttribute="top" secondItem="41" secondAttribute="bottom" constant="6" id="V1Q-eX-niu"/>
+                    <constraint firstItem="173" firstAttribute="leading" secondItem="njw-6h-hXv" secondAttribute="leading" id="Zt5-4i-hh8"/>
+                    <constraint firstItem="173" firstAttribute="top" secondItem="46" secondAttribute="bottom" constant="6" id="cek-lE-zGn"/>
+                    <constraint firstItem="15" firstAttribute="top" secondItem="njw-6h-hXv" secondAttribute="top" constant="4" id="ces-rR-b5x"/>
+                    <constraint firstAttribute="trailing" secondItem="11" secondAttribute="trailing" constant="20" id="ckU-lH-d3t"/>
+                    <constraint firstItem="11" firstAttribute="leading" secondItem="njw-6h-hXv" secondAttribute="leading" constant="78" id="fJR-3A-FQ3"/>
+                    <constraint firstItem="11" firstAttribute="top" secondItem="15" secondAttribute="bottom" constant="18" id="knh-jl-N5m"/>
+                    <constraint firstAttribute="trailing" secondItem="46" secondAttribute="trailing" constant="11" id="lrr-XA-qa9"/>
+                    <constraint firstItem="183" firstAttribute="top" secondItem="njw-6h-hXv" secondAttribute="topMargin" constant="13" id="rwS-VI-5Z3"/>
+                    <constraint firstItem="173" firstAttribute="top" secondItem="46" secondAttribute="bottom" constant="6" id="sZD-88-JSW"/>
+                    <constraint firstAttribute="trailing" secondItem="173" secondAttribute="trailing" id="wae-0z-RJp"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageTitle" destination="4" id="55"/>
@@ -72,15 +109,11 @@
                 <outlet property="labSize" destination="41" id="57"/>
                 <outlet property="progressView" destination="11" id="59"/>
             </connections>
+            <point key="canvasLocation" x="34" y="55"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="icon_picture.png" width="35" height="35"/>
-        <image name="line_offlineguide.png" width="320" height="2"/>
+        <image name="line_offlineguide.png" width="300" height="1"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

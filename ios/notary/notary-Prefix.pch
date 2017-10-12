@@ -80,8 +80,8 @@ typedef int NSInteger;
 #define ATTACH   @"wqerf*6205"
 #define Appsino @"appstore"
 
-#define SITE_RECORDING_NUMBER @"4008786688"
-#define DEFAULT_NUMBER @"4008786688"
+#define SITE_RECORDING_NUMBER @"53942994"
+#define DEFAULT_NUMBER @"53942994"
 #define DATABASE @"store.rdb"
 
 
@@ -173,7 +173,7 @@ typedef int NSInteger;
 
 //生产环境
 //#define ROOT_URL @"http://m.4009991000.com/"
-#define ROOT_URL  @"http://118.31.237.120/interface/" ////@"http://123.150.43.70/sinomini/"
+#define ROOT_URL  @"http://39.108.192.17:8080/interface/" ////@"http://123.150.43.70/sinomini/"
 #define TONGJI_ROOT_URL @"http://123.150.43.70/sinomini/"
 
 #define PUSH_URL @"sendBindInfo.action"

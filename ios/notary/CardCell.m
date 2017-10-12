@@ -99,20 +99,20 @@
     }
     else if (self.tel.text.length <=9){
         
-        if (IOS7_OR_LATER) {
+//        if (IOS7_OR_LATER) {
             ZSYTextPopView*alertView = [[ZSYTextPopView alloc] initWithFrame:CGRectMake(0, 0, 250, 130)];
             alertView.titleName.text = @"请输入区号";
             alertView.maxLength=10;
             alertView.tag=1;
             alertView.myDelegate=self;
             [alertView show];
-        }else{
-            CustomAlertView * alert = [[CustomAlertView alloc] initWithAlertTitle:@"请输入区号"];
-            alert.delegate = self;
-            alert.maxLength = 4;
-            
-            [alert show];
-        }
+//        }else{
+//            CustomAlertView * alert = [[CustomAlertView alloc] initWithAlertTitle:@"请输入区号"];
+//            alert.delegate = self;
+//            alert.maxLength = 4;
+//            
+//            [alert show];
+//        }
        
     }
     else{

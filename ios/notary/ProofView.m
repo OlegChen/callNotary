@@ -435,10 +435,10 @@
         view.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
         view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 160);
         
-         UserCenter *user = [[UserCenter alloc]init];
+         UserCenter *user = [[UserCenter alloc]initWithNibName:@"UserCenter" bundle:nil];
         [self addChildViewController:user];
         [view addSubview:user.view];
-        view.frame = CGRectMake(0, 10, view.bounds.size.width,view.bounds.size.height - 20 );
+        user.view.frame = CGRectMake(0, 10, [UIScreen mainScreen].bounds.size.width,view.bounds.size.height - 20 );
         view.clipsToBounds = YES;
         
         view;

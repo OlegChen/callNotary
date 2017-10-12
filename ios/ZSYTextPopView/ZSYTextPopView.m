@@ -65,16 +65,16 @@ static const char * const kZSYPopoverListButtonClickForDone = "kZSYPopoverListBu
 
     _titleName = [[UILabel alloc] initWithFrame:CGRectZero];
     self.titleName.font = [UIFont systemFontOfSize:17.0f];
-    self.titleName.backgroundColor = [UIColor colorWithRed:59./255.
-                                                 green:89./255.
-                                                  blue:152./255.
-                                                 alpha:1.0f];
-    
+//    self.titleName.backgroundColor = [UIColor colorWithRed:59./255.
+//                                                 green:89./255.
+//                                                  blue:152./255.
+//                                                 alpha:1.0f];
+//
     self.titleName.textAlignment = NSTextAlignmentCenter;
-    self.titleName.textColor = [UIColor whiteColor];
+    self.titleName.textColor = [UIColor colorWithRed:68/255.0 green:68/255.0 blue:68/255.0 alpha:1.0];
     CGFloat xWidth = self.bounds.size.width;
     self.titleName.lineBreakMode = NSLineBreakByTruncatingTail;
-    self.titleName.frame = CGRectMake(0, 0, xWidth, 32.0f);
+    self.titleName.frame = CGRectMake(0, 0, xWidth, 35.0f);
     [self addSubview:self.titleName];
     
     UITextField *passwordField = [[UITextField alloc] initWithFrame:CGRectMake(14, 45, 222, 25)];
@@ -99,6 +99,17 @@ static const char * const kZSYPopoverListButtonClickForDone = "kZSYPopoverListBu
     // Add to subview
     [self addSubview:_showTextField];
     
+    
+    
+    UIView *line = [[UIView alloc]init];
+    line.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
+    line.frame = CGRectMake(0, 85, xWidth, 0.5f);
+    [self addSubview:line];
+    
+    UIView *line2 = [[UIView alloc]init];
+    line2.backgroundColor = [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1.0];
+    line2.frame = CGRectMake(xWidth / 2.0, 85, 0.5f, 60);
+    [self addSubview:line2];
     
     UIButton *sureBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     sureBtn.frame = CGRectMake(150, 90, 60, 30);

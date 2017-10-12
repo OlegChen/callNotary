@@ -109,7 +109,7 @@
                         <action selector="fangXiangShiJian:" destination="-1" eventType="touchUpInside" id="tVG-YL-555"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="4我的-头像" translatesAutoresizingMaskIntoConstraints="NO" id="KIZ-6d-6Qj">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1去电录音图标" translatesAutoresizingMaskIntoConstraints="NO" id="KIZ-6d-6Qj">
                     <rect key="frame" x="35" y="20" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="4qI-4Q-qPv"/>
@@ -148,7 +148,7 @@
     </objects>
     <resources>
         <image name=" " width="16" height="16"/>
-        <image name="4我的-头像" width="42" height="42"/>
+        <image name="1去电录音图标" width="42" height="42"/>
         <image name="btn_checkin.png" width="138" height="41"/>
         <image name="btn_share.png" width="138" height="41"/>
         <image name="充值图标" width="111" height="27"/>

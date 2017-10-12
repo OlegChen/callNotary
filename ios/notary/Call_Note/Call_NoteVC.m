@@ -22,7 +22,7 @@
 #import "Address_Sqlite_Tool.h"
 #import "AddressCard.h"
 
-@interface Call_NoteVC ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate>
+@interface Call_NoteVC ()<UITableViewDataSource,UITableViewDelegate,UIScrollViewDelegate,ZSYPopoverDelegata>
 
 - (void)handleBackButtonClick:(UIButton *)but;
 - (void)handleRightButtonClick;
@@ -1209,20 +1209,20 @@
     }
     else if (num.length <=9){
         
-        if (IOS7_OR_LATER) {
+//        if (IOS7_OR_LATER) {
             ZSYTextPopView*alertView = [[ZSYTextPopView alloc] initWithFrame:CGRectMake(0, 0, 250, 130)];
             alertView.titleName.text = @"请输入区号";
             alertView.maxLength=10;
             alertView.tag=1;
             alertView.myDelegate=self;
             [alertView show];
-        }else{
-            CustomAlertView * alert = [[CustomAlertView alloc] initWithAlertTitle:@"请输入区号"];
-            alert.delegate = self;
-            alert.maxLength = 4;
-            
-            [alert show];
-        }
+//        }else{
+//            CustomAlertView * alert = [[CustomAlertView alloc] initWithAlertTitle:@"请输入区号"];
+//            alert.delegate = self;
+//            alert.maxLength = 4;
+//            
+//            [alert show];
+//        }
         
     }
     else{
@@ -1241,6 +1241,53 @@
         
     }
 }
+
+
+#pragma mark - ZSYpopDelegate
+-(void)popoView:(ZSYTextPopView *)popview content:(NSString *)content clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    NSLog(@"popview---%ld",(long)popview.tag);
+    NSLog(@"content---content:-%@",content);
+    NSLog(@"content---clickedButtonAtIndex:%ld",(long)buttonIndex);
+    
+    if (popview.tag == 1 && buttonIndex == 1) {
+        
+        //        CustomAlertView * alert = (CustomAlertView *)alertView;
+        //        NSString * keyword = [alert getKeyWord];
+        
+        NSString * regex = @"0[0-9]{2,3}";
+        NSPredicate * pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+        BOOL isMatch = [pred evaluateWithObject:content];
+        
+        if (!isMatch) {
+            
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"输入区号不正确" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+            return;
+        }
+        
+        
+        //记录 通话记录
+        //记录 通话记录
+        NSString *time = [Call_Note_sqliteTool getNowTime];
+        [Call_Note_sqliteTool insertCall_NoteWithName:self.name phoneNum:self.num call_time:time];
+        
+        
+        NSString * number = [NSString stringWithFormat:@"tel://%@,,%@-%@",Call_note_Cell.getTransferTel,content,self.num];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:number]];
+        
+    }
+    
+    //    UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"提示"
+    //                                                         message:@"hhfhfshfhsfhhfhsfhsfhshhjfhhdjhshjh"
+    //                                                        delegate:nil
+    //                                               cancelButtonTitle:@"确定"
+    //                                               otherButtonTitles:nil];
+    //    [alertView show];
+    
+}
+
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {

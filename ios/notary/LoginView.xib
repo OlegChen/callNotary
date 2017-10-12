@@ -53,7 +53,7 @@
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
-                    <state key="highlighted" backgroundImage="btn_signin_big.png">
+                    <state key="highlighted">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
@@ -150,7 +150,6 @@
         </view>
     </objects>
     <resources>
-        <image name="btn_signin_big.png" width="229" height="36"/>
         <image name="登录页-1125-2436" width="1125" height="2436"/>
     </resources>
 </document>

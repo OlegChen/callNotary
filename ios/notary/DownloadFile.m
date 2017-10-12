@@ -46,7 +46,7 @@
         
     }else if  (file.type == kVoiceFile){
         
-        NSString * cryptName = [NSString stringWithFormat:@"%@.enr",name];
+        NSString * cryptName = [NSString stringWithFormat:@"%@",name];
         destinationPath = [[Sandbox voicePath] stringByAppendingPathComponent:cryptName];
         
     }
