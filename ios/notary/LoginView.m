@@ -17,6 +17,7 @@
 #include <sys/sysctl.h>
 #include <stdio.h>
 
+
 @interface LoginView ()
 
 - (void)handleRememberPassWord;
@@ -472,19 +473,125 @@
     NSString* phoneVersion = [[UIDevice currentDevice] systemVersion];
     NSLog(@"手机系统版本: %@", phoneVersion);
     
+    
     //debugLog(@"MD5password %@",[_loginKeyWord.text MD5]);
-    [request setPostValue:phoneModel forKey:@"model"];
-    [request setPostValue:_loginNumber.text forKey:@"mobileNo"];
-    [request setPostValue:[_loginKeyWord.text MD5] forKey:@"password"];
-    [request setPostValue:@"1" forKey:@"src"];
-    [request setPostValue:APP_ID forKey:@"app_id"];
-    [request setPostValue:VERSIONS forKey:@"v"];
-    [request setPostValue:Appsino forKey:@"qudao"];
-    [request setPostValue:sig forKey:@"sig"];
+//    [request setPostValue:phoneModel forKey:@"model"];
+//    [request setPostValue:_loginNumber.text forKey:@"mobileNo"];
+//    [request setPostValue:[_loginKeyWord.text MD5] forKey:@"password"];
+//    [request setPostValue:@"1" forKey:@"src"];
+//    [request setPostValue:APP_ID forKey:@"app_id"];
+//    [request setPostValue:VERSIONS forKey:@"v"];
+//    [request setPostValue:Appsino forKey:@"qudao"];
+//    [request setPostValue:sig forKey:@"sig"];
+//
+//    [request setTimeOutSeconds:60.0f];
+//
+//    [request startAsynchronous];
     
-    [request setTimeOutSeconds:60.0f];
+    [self handleActivityStart];
     
-    [request startAsynchronous];
+    NSDictionary *parameters = @{@"model":phoneModel,
+                                 @"mobileNo" : _loginNumber.text ,
+                                 @"password" : [_loginKeyWord.text MD5] ,
+                                 @"src" : @"1" ,
+                                 @"app_id" : APP_ID ,
+                                 @"v" : VERSIONS,
+                                 @"qudao" : Appsino,
+                                 @"sig" : sig,
+                                 };
+    
+    [NetWork postWithUrlString:urls parameters:parameters success:^(id data) {
+        
+        [self handleActivityStop];
+        
+        [_jsonData appendData:data];
+
+        
+        NSString * logstr = [[NSString alloc] initWithData:_jsonData encoding:NSUTF8StringEncoding];
+        debugLog(logstr);
+        
+        NSDictionary * jsonDic =  [_jsonData objectFromJSONData];
+        
+        NSString * code = [jsonDic objectForKey:@"code"];
+        NSString * codeInfo = [jsonDic objectForKey:@"codeInfo"];
+        
+        if ([code intValue] == 0) {
+            
+            
+            //[[NSUserDefaults standardUserDefaults] setObject:data forKey:@"pushDic"];
+            
+            
+            NSDictionary * dic = [[NSUserDefaults standardUserDefaults] objectForKey:@"pushDic"];
+            _jsonData = [[NSMutableData alloc] init];
+            [self  requestPushNotiflcation:dic];
+            NSLog(@"-----dic:%@",dic);
+            
+            NSDictionary * data = [jsonDic objectForKey:@"data"];
+            NSString * userCode = [data objectForKey:@"userCode"];
+            NSString * userID = [data objectForKey:@"userID"];
+            NSString * secretKey = [data objectForKey:@"secretKey"];
+            NSString * isExist =[data objectForKey:@"isExist"];
+            NSString * succRecordNum = [data objectForKey:@"succRecordNum"];
+            
+            UserModel * user = [UserModel sharedInstance];
+            user.userCode = userCode;
+            user.userID = userID;
+            user.password = _loginKeyWord.text;
+            user.phoneNumber = _loginNumber.text;
+            user.secretKey = secretKey;
+            user.isUseAlipay = [data objectForKey:@"isUseAlipay"];
+            user.unReadMsgNum = [[data objectForKey:@"unReadMsgNum"] intValue];
+            user.transfer_tel = [data objectForKey:@"transfer_tel"];
+            user.succRecordNum = succRecordNum;
+            if ([isExist isEqualToString:@"true"]){
+                
+                user.isExist = YES;
+                
+            }else {
+                
+                user.isExist = NO;
+                
+            }
+            
+            BOOL result = [self queryByName:user];
+            if (!result) {
+                [self insert:user];
+            }
+            
+            [_userDefault setObject:_loginNumber.text forKey:DEFAULT_PHONENUMBER];
+            [_userDefault setObject:_loginKeyWord.text forKey:DEFAULT_PWD];
+            
+            if (nil == userID || [userID isEqualToString:@""]) {
+                
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                                 message:@"服务器异常" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+                
+            }else {
+                
+                [((AppDelegate *)[[UIApplication sharedApplication] delegate]) initMainView];
+            }
+            
+        }else {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示" message:codeInfo delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        [_jsonData setLength:0];
+        
+    } failure:^(NSError *error) {
+        
+        [self handleActivityStop];
+        debugLog([error description]);
+        
+        if (error != nil) {
+            NSString * message = [NSString stringWithFormat:@"%@",error];
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"提示"
+                                                             message:@"啊哦~网络好像断开了" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+        }
+        
+    }];
+    
     
 
 }

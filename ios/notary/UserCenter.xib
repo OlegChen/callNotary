@@ -70,7 +70,7 @@
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
-                    <state key="highlighted" backgroundImage="充值图标">
+                    <state key="highlighted">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
@@ -151,6 +151,5 @@
         <image name="1去电录音图标" width="42" height="42"/>
         <image name="btn_checkin.png" width="138" height="41"/>
         <image name="btn_share.png" width="138" height="41"/>
-        <image name="充值图标" width="111" height="27"/>
     </resources>
 </document>

@@ -662,10 +662,10 @@
 //    TestRecharge *rechargeVC = [[TestRecharge alloc] init];
     
     //充值
-//    [MobClick event:@"充值按钮"];
-//    Recharge *rechargeVC = [[Recharge alloc] init];
-//    [self.navigationController pushViewController:rechargeVC animated:YES];
-//    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) hiddenTab:YES];
+    [MobClick event:@"充值按钮"];
+    Recharge *rechargeVC = [[Recharge alloc] init];
+    [self.navigationController pushViewController:rechargeVC animated:YES];
+    [((AppDelegate *)[[UIApplication sharedApplication] delegate]) hiddenTab:YES];
 }
 
 - (IBAction)signBtnClick:(UIButton *)sender {
