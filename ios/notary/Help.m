@@ -76,7 +76,7 @@
     [cache removeAllCachedResponses];
     
     webView = [[UIWebView alloc] initWithFrame:cgrect];
-    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://118.31.237.120/interface/help/help.html"]];
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@help/help.html",ROOT_URL]]];
     
     
     //webView.backgroundColor = [UIColor redColor];

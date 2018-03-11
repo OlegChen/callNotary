@@ -248,21 +248,94 @@
     
     NSString * url = [NSString stringWithFormat:@"%@%@",ROOT_URL,USER_PACKAGE_MARGIN_URL];
     NSURL * postServierURL = [NSURL URLWithString:url];
-    request = [ASIFormDataRequest requestWithURL:postServierURL];
-
-    //测试，先用的是38ID，后民要改成自己的ID；
-    [request setPostValue:user.userID forKey:@"userID"];
-    [request setPostValue:APP_ID forKey:@"app_id"];
-    [request setPostValue:VERSIONS forKey:@"v"];
-    [request setPostValue:phoneNum forKey:@"mobileNo"];
-    [request setPostValue:@"1" forKey:@"src"];
-    [request setPostValue:sig forKey:@"sig"];
-     [request setTimeOutSeconds:30.0f];
+//    request = [ASIFormDataRequest requestWithURL:postServierURL];
+//
+//    //测试，先用的是38ID，后民要改成自己的ID；
+//    [request setPostValue:user.userID forKey:@"userID"];
+//    [request setPostValue:APP_ID forKey:@"app_id"];
+//    [request setPostValue:VERSIONS forKey:@"v"];
+//    [request setPostValue:phoneNum forKey:@"mobileNo"];
+//    [request setPostValue:@"1" forKey:@"src"];
+//    [request setPostValue:sig forKey:@"sig"];
+//     [request setTimeOutSeconds:30.0f];
+//
+//    request.delegate = self;
+//    request.tag = 100;
+//    [request setRequestMethod:@"POST"];
+//    [request startAsynchronous];
     
-    request.delegate = self;
-    request.tag = 100;
-    [request setRequestMethod:@"POST"];
-    [request startAsynchronous];
+    
+    NSDictionary *paradic = @{
+                              @"userID" : user.userID,
+                              @"app_id" : APP_ID,
+                              @"v" : VERSIONS,
+                              @"mobileNo" :phoneNum,
+                              @"src" : @"1",
+                              @"sig" : sig,
+                              };
+    
+    [NetWork postWithUrlString:url parameters:paradic success:^(id data) {
+        
+        /*    code = 0;
+         codeInfo = "";
+         data =     {
+         callRecordLeft = 100;
+         leftMoney = 50;
+         spaceAll = 140444407;
+         spaceUsed = 94427338;
+         };*/
+        _feeMsg = [[FeeMsgModel alloc] init];
+        //    JSONDecoder *jd = [[JSONDecoder alloc] init];
+        NSDictionary * jsonDic =  [data objectFromJSONData];
+        NSString * code = [jsonDic objectForKey:@"code"];
+        NSString * codeInfo = [jsonDic objectForKey:@"codeInfo"];
+        
+        if (0 == [code intValue]) {
+            
+            NSLog(@"jsonDic--->%@",jsonDic);
+            _feeMsg.callRecordLeft = [[jsonDic objectForKey:@"data"] objectForKey:@"callRecordLeft"];
+            _feeMsg.leftMoney = [[jsonDic objectForKey:@"data"] objectForKey:@"leftMoney"];
+            _feeMsg.spaceAll = [[jsonDic objectForKey:@"data"] objectForKey:@"spaceAll"];
+            _feeMsg.spaceUsed = [[jsonDic objectForKey:@"data"] objectForKey:@"spaceUsed"];
+            
+            self.binNumberLabel.text = [NSString stringWithFormat:@"%d", [_feeMsg.leftMoney intValue]];
+            self.timeLabel.text = [self formatTime:_feeMsg.callRecordLeft];
+            self.GNumberLaber.text =  [NSString stringWithFormat:@"%@/%@",[self performSelector:@selector(formatGandMText:) withObject:_feeMsg.spaceUsed],[self performSelector:@selector(formatGandMText:) withObject:_feeMsg.spaceAll]];
+            if (IOS7_OR_LATER) {
+                //[self.myProgressView setProgressViewStyle:UIProgressViewStyleDefault];
+                //self.myProgressView.frame=CGRectMake(0, 40, 320,40);
+                float ProgressProportion= 0.0f;
+                
+                self.myProgressView.hidden=YES;
+                UIImageView*image1=[[UIImageView alloc] initWithFrame:CGRectMake(110, 210, 60, 16)];
+                // image1.image=[UIImage imageNamed:@"progressbar_bg"];
+                
+                if([_feeMsg.spaceAll floatValue]==0){
+                    ProgressProportion = 1;
+                } else {
+                    ProgressProportion= [_feeMsg.spaceUsed floatValue]/[_feeMsg.spaceAll floatValue];
+                }
+                UIImageView*image2=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60*ProgressProportion, 16)];
+                image2.image=[UIImage imageNamed:@"progressbar"];
+                [image1 addSubview:image2];
+                
+                [self.BackImage addSubview:image1];
+                //
+                
+            }
+            
+            [self.myProgressView setProgress:[_feeMsg.spaceUsed floatValue]/[_feeMsg.spaceAll floatValue] animated:NO];
+            
+        }else{
+            [self alertWithMessage:codeInfo];
+        }
+        
+    } failure:^(NSError *error) {
+        
+        [DejalBezelActivityView removeView];
+
+    }];
+    
 }
 
 - (void)request:(ASIHTTPRequest *)request1 didReceiveData:(NSData *)data

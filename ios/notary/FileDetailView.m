@@ -968,7 +968,7 @@
     NSString * codeInfo = [dic objectForKey:@"codeInfo"];
 
         if ([code intValue] == 0){
-    _shareText = [NSString stringWithFormat:@"我通过电话录音存证，并分享了文件“%@”,地址：%@%@",self.filename.text,ROOT_URL, [doc objectForKey:@"url"]];
+    _shareText = [NSString stringWithFormat:@"我通过录音存证存证，并分享了文件“%@”,地址：%@%@",self.filename.text,ROOT_URL, [doc objectForKey:@"url"]];
     [DejalActivityView removeView];
     [self shareFile];
         }else {

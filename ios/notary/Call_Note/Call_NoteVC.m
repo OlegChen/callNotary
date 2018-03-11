@@ -412,12 +412,12 @@
                 
                 
                 if (IOS7_OR_LATER) {
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"        使用电话录音拨打电话                您的通话将会被录音" message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"        使用录音存证拨打电话                您的通话将会被录音" message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     [alertView show];
                     //                [_contentTable reloadData];
                     
                 }else {
-                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"使用电话录音拨打电话                您的通话将会被录音" message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"使用录音存证拨打电话                您的通话将会被录音" message:@"" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
                     [alertView show];
                     
                 }

@@ -28,6 +28,8 @@ static int count = 60;
     [super viewDidLoad];
     self.title = @"忘记密码";
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     [self.btnPwd setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btnConfirm setBackgroundImage:[UIImage resizableImageWithName:@"蓝色按钮"] forState:UIControlStateNormal];
     
@@ -319,14 +321,14 @@ static int count = 60;
     if (IS_IPHONE_5) {
         
     }else{
-        if (textField == _txtNumber) {
-            [UIView beginAnimations:nil context:nil];
-            [UIView animateWithDuration:1 animations:nil];
-            CGRect viewFrame = self.view.frame;
-            viewFrame.origin.y = 64;
-            self.view.frame = viewFrame;
-            [UIView commitAnimations];
-        }
+//        if (textField == _txtNumber) {
+//            [UIView beginAnimations:nil context:nil];
+//            [UIView animateWithDuration:1 animations:nil];
+//            CGRect viewFrame = self.view.frame;
+//            viewFrame.origin.y = 64;
+//            self.view.frame = viewFrame;
+//            [UIView commitAnimations];
+//        }
     }
     return YES;
 }
@@ -335,14 +337,14 @@ static int count = 60;
     if (IS_IPHONE_5) {
         
     }else{
-        if (textField == _txtNumber ) {
-            [UIView beginAnimations:nil context:nil];
-            [UIView animateWithDuration:1 animations:nil];
-            CGRect viewFrame = self.view.frame;
-            viewFrame.origin.y = -80;
-            self.view.frame = viewFrame;
-            [UIView commitAnimations];
-        }
+//        if (textField == _txtNumber ) {
+//            [UIView beginAnimations:nil context:nil];
+//            [UIView animateWithDuration:1 animations:nil];
+//            CGRect viewFrame = self.view.frame;
+//            viewFrame.origin.y = -80;
+//            self.view.frame = viewFrame;
+//            [UIView commitAnimations];
+//        }
     }
     
     return YES;

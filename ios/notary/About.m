@@ -33,7 +33,7 @@
 
 - (void)makeView
 {
-    self.title = @"关于电话录音";
+    self.title = @"关于录音存证";
     self.navigationItem.hidesBackButton = YES;
     
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -49,7 +49,7 @@
         CFShow((__bridge CFTypeRef)(infoDictionary));
     // app版本
     NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    NSString *oringalTxt = @"电话录音手机客户端V";
+    NSString *oringalTxt = @"录音存证手机客户端V";
     self.VNumberLabel.text = [oringalTxt stringByAppendingString:[NSString stringWithFormat:@"%@",app_Version]];
     self.VNumberLabel.textAlignment = UITextAlignmentCenter;
     

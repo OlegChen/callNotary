@@ -236,51 +236,51 @@ static int count = 60;
 {
     [textField resignFirstResponder];
     
-    if (IS_IPHONE_5) {
-        
-        
-        
-        
-    }else{
-        if (IOS7_OR_LATER) {
-            
-            if (textField == _txtAgainPwd || textField == _txtPwd) {
-                [UIView beginAnimations:nil context:nil];
-                [UIView animateWithDuration:1 animations:nil];
-                CGRect viewFrame = self.view.frame;
-                viewFrame.origin.y = 64;
-                self.view.frame = viewFrame;
-                [UIView commitAnimations];
-            }
-
-            
-        }else{
-        if (textField == _txtAgainPwd || textField == _txtPwd) {
-            [UIView beginAnimations:nil context:nil];
-            [UIView animateWithDuration:1 animations:nil];
-            CGRect viewFrame = self.view.frame;
-            viewFrame.origin.y = 0;
-            self.view.frame = viewFrame;
-            [UIView commitAnimations];
-        }
-        }
-    }
+//    if (IS_IPHONE_5) {
+//        
+//        
+//        
+//        
+//    }else{
+//        if (IOS7_OR_LATER) {
+//            
+//            if (textField == _txtAgainPwd || textField == _txtPwd) {
+//                [UIView beginAnimations:nil context:nil];
+//                [UIView animateWithDuration:1 animations:nil];
+//                CGRect viewFrame = self.view.frame;
+//                viewFrame.origin.y = 64;
+//                self.view.frame = viewFrame;
+//                [UIView commitAnimations];
+//            }
+//
+//            
+//        }else{
+//        if (textField == _txtAgainPwd || textField == _txtPwd) {
+//            [UIView beginAnimations:nil context:nil];
+//            [UIView animateWithDuration:1 animations:nil];
+//            CGRect viewFrame = self.view.frame;
+//            viewFrame.origin.y = 0;
+//            self.view.frame = viewFrame;
+//            [UIView commitAnimations];
+//        }
+//        }
+//    }
     return YES;
 }
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
 {
-    if (IS_IPHONE_5) {
-        
-    }else{
-        if (textField == _txtPwd || textField == _txtAgainPwd) {
-            [UIView beginAnimations:nil context:nil];
-            [UIView animateWithDuration:1 animations:nil];
-            CGRect viewFrame = self.view.frame;
-            viewFrame.origin.y = -140;
-            self.view.frame = viewFrame;
-            [UIView commitAnimations];
-        }
-    }
+//    if (IS_IPHONE_5) {
+//
+//    }else{
+//        if (textField == _txtPwd || textField == _txtAgainPwd) {
+//            [UIView beginAnimations:nil context:nil];
+//            [UIView animateWithDuration:1 animations:nil];
+//            CGRect viewFrame = self.view.frame;
+//            viewFrame.origin.y = -140;
+//            self.view.frame = viewFrame;
+//            [UIView commitAnimations];
+//        }
+//    }
     
     return YES;
 }

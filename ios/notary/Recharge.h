@@ -12,26 +12,29 @@
 
 typedef enum {
     kRechargeButtonEmpty = 0,
-    kRechargeButton18 = 18,
-    kRechargeButton68 = 68,
-    kRechargeButton168 = 168,
-    kRechargeButton388 = 388,
+    kRechargeButton18 = 1,
+    kRechargeButton68 = 18,
+    kRechargeButton168 = 88,
+    kRechargeButton388 = 188,
     kRechargeButtonNum
 }kRechargeButtonClickType;
 
 //payType Alipay:100 appstore:103
 
+// 68、168、388 --》--》--》 18 、88、188
+
 //定义金额
-#define ProductID_IAP_Recharge_18 @"com.fengyz.notary.18"//$12
-#define ProductID_IAP_Recharge_45 @"com.sinocall.phonerecorder.68"//$45
-#define ProductID_IAP_Recharge_60 @"com.sinocall.phonerecorder.168" //$60
-#define ProductID_IAP_Recharge_108 @"com.sinocall.phonerecorder.388" //$108
+#define ProductID_IAP_Recharge_18 @"com.fengyz.notary.18"//$12    无用
+
+#define ProductID_IAP_Recharge_45 @"purchaseRecordTel_18"//$45
+#define ProductID_IAP_Recharge_60 @"purchaseRecordTel_88" //$60
+#define ProductID_IAP_Recharge_108 @"purchaseRecordTel_188" //$108
 
 //显示标题
 #define ProductID_IAP_Recharge_TITLE_18 @"  12"
-#define ProductID_IAP_Recharge_TITLE_45 @"  68"
-#define ProductID_IAP_Recharge_TITLE_60 @"  168"
-#define ProductID_IAP_Recharge_TITLE_108 @"  388"
+#define ProductID_IAP_Recharge_TITLE_45 @"  18"
+#define ProductID_IAP_Recharge_TITLE_60 @"  88"
+#define ProductID_IAP_Recharge_TITLE_108 @"  188"
 
 @interface Recharge : UIViewController<SKProductsRequestDelegate,SKPaymentTransactionObserver>
 {

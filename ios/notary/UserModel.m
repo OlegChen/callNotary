@@ -19,6 +19,12 @@ static UserModel * instance;
     }
     return instance;
 }
+
+- (void)setUnReadMsgNum:(int)unReadMsgNum{
+    
+    _unReadMsgNum = 0;
+}
+
 - (void)unLogin
 {
     _userCode = nil;

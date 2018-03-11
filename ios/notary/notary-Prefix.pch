@@ -75,13 +75,13 @@ typedef int NSInteger;
 //友盟统计
 #define UMENG_APPKEY @"55a4733567e58eb0c70025b9"
 
-#define VERSIONS @"1.1"
+#define VERSIONS @"1.0"
 #define APP_ID   @"5555"
 #define ATTACH   @"wqerf*6205"
 #define Appsino @"appstore"
 
-#define SITE_RECORDING_NUMBER @"53942994"
-#define DEFAULT_NUMBER @"53942994"
+#define SITE_RECORDING_NUMBER @"01053942994"
+#define DEFAULT_NUMBER @"01053942994"
 #define DATABASE @"store.rdb"
 
 
@@ -142,6 +142,7 @@ typedef int NSInteger;
 //适配ios7
 #define IOS7_OR_LATER   ( [[[UIDevice currentDevice] systemVersion] compare:@"7.0"] != NSOrderedAscending )
 
+#define isiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 //去log
 #ifdef DEBUG
@@ -175,8 +176,8 @@ typedef int NSInteger;
 
 //生产环境
 //#define ROOT_URL @"http://m.4009991000.com/"
-#define ROOT_URL  @"http://39.108.192.17:8080/interface/" ////@"http://123.150.43.70/sinomini/"
-#define TONGJI_ROOT_URL @"http://39.108.192.17:8080/interface/"
+#define ROOT_URL  @"http://www.yuncuntx.com/api/" ////@"http://123.150.43.70/sinomini/"
+#define TONGJI_ROOT_URL @"http://www.yuncuntx.com/api/"
 
 #define PUSH_URL @"sendBindInfo.action"
 #define LOGIN_URL @"login.action"

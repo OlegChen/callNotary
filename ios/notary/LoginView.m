@@ -28,6 +28,7 @@
 //
 //@property (nonatomic ,strong) UITextField *loginNumber;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topH;
 
 @property (weak, nonatomic) IBOutlet UIImageView *loginBG;
 
@@ -52,7 +53,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    
+    if (isiPhoneX) {
+        
+        self.topH.constant = 190;
+    }
 
     
     

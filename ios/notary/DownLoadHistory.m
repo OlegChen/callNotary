@@ -213,7 +213,7 @@ static FileModel * tmpFileModel = nil;
 {
     @try {
         
-       if (IOS7_OR_LATER) {
+//       if (IOS7_OR_LATER) {
         for (id obj in _myTableView.subviews) {
             
             
@@ -245,37 +245,37 @@ static FileModel * tmpFileModel = nil;
             }
         }
 
-    }else{
-        for (id obj in _myTableView.subviews) {
-            
-            
-            if ([obj isKindOfClass:NSClassFromString(@"UITableViewWrapperView")]) {
-                UIView*objView=(UIView*)obj;
-                for (id view in objView.subviews) {
-                    
-                }
-                
-            }
-            if ([obj isKindOfClass:[DownloadCell class]])
-            {
-                DownloadCell * cell = (DownloadCell *)obj;
-                if (cell.file == nil) {
-                    
-                }else{
-                if ([fileInfo.serverFileId isEqualToString:cell.file.serverFileId])
-                {
-                    
-                    float currentProgress = [self getProgress:[self getFileSizeNumber:fileInfo.size]
-                                                  currentSize:[fileInfo.receivedSize floatValue]];
-                    NSLog(@"------currentProgress:%f",currentProgress);
-                    NSLog(@"-----fileInfo.size:%@,fileInfo.receivedSize:%@",fileInfo.size,fileInfo.receivedSize );
-                    [cell.progressView setProgress:currentProgress];
-                    cell.labErrorMessage.text = @"下载中(点击暂停)";
-                }}
-            }
-        }
-
-    }
+//    }else{
+//        for (id obj in _myTableView.subviews) {
+//
+//
+//            if ([obj isKindOfClass:NSClassFromString(@"UITableViewWrapperView")]) {
+//                UIView*objView=(UIView*)obj;
+//                for (id view in objView.subviews) {
+//
+//                }
+//
+//            }
+//            if ([obj isKindOfClass:[DownloadCell class]])
+//            {
+//                DownloadCell * cell = (DownloadCell *)obj;
+//                if (cell.file == nil) {
+//
+//                }else{
+//                if ([fileInfo.serverFileId isEqualToString:cell.file.serverFileId])
+//                {
+//
+//                    float currentProgress = [self getProgress:[self getFileSizeNumber:fileInfo.size]
+//                                                  currentSize:[fileInfo.receivedSize floatValue]];
+//                    NSLog(@"------currentProgress:%f",currentProgress);
+//                    NSLog(@"-----fileInfo.size:%@,fileInfo.receivedSize:%@",fileInfo.size,fileInfo.receivedSize );
+//                    [cell.progressView setProgress:currentProgress];
+//                    cell.labErrorMessage.text = @"下载中(点击暂停)";
+//                }}
+//            }
+//        }
+//
+//    }
     }
     @catch (NSException *exception) {
         
@@ -289,8 +289,8 @@ static FileModel * tmpFileModel = nil;
 - (void)handleUpdateCellFinished:(FileModel *)fileInfo
 {
     
-    if (IOS7_OR_LATER) {
-        
+//    if (IOS7_OR_LATER) {
+    
         for (id obj in _myTableView.subviews) {
             if ([obj isKindOfClass:NSClassFromString(@"UITableViewWrapperView")]) {
                 UIView*objView=(UIView*)obj;
@@ -317,28 +317,28 @@ static FileModel * tmpFileModel = nil;
         }
 
         
-    }else{
-    for (id obj in _myTableView.subviews) {
-        
-        if ([obj isKindOfClass:[DownloadCell class]])
-        {
-            DownloadCell * cell = (DownloadCell *)obj;
-            if (cell.file == nil) {
-                
-            }else{
-            if ([fileInfo.serverFileId isEqualToString:cell.file.serverFileId])
-            {
-                
-                [cell.progressView setProgress:1.0];
-                cell.labErrorMessage.text = @"已完成";
-//                [self updateDownStatusFinish:cell.file.serverFileId];
-            }
-            }
-        }
-    }
+//    }else{
+//    for (id obj in _myTableView.subviews) {
+//        
+//        if ([obj isKindOfClass:[DownloadCell class]])
+//        {
+//            DownloadCell * cell = (DownloadCell *)obj;
+//            if (cell.file == nil) {
+//                
+//            }else{
+//            if ([fileInfo.serverFileId isEqualToString:cell.file.serverFileId])
+//            {
+//                
+//                [cell.progressView setProgress:1.0];
+//                cell.labErrorMessage.text = @"已完成";
+////                [self updateDownStatusFinish:cell.file.serverFileId];
+//            }
+//            }
+//        }
+//    }
 
 
-    }
+//    }
 
 
     
@@ -739,7 +739,7 @@ static FileModel * tmpFileModel = nil;
     }else if(buttonIndex == 1){
         [self sendToAppWithFileModel:fileStr];
     }else if(buttonIndex == 2){
-        [self saveDatotoPhotosAlbumWithFile:fileStr];
+//        [self saveDatotoPhotosAlbumWithFile:fileStr];
     }else if (buttonIndex == 3){
         
     }

@@ -42,28 +42,28 @@
     self.title = @"充值";
     self.navigationItem.hidesBackButton = YES;
 
-    [self.rechargeBtn setBackgroundImage:[UIImage resizableImageWithName:@"通用绿按钮"] forState:UIControlStateNormal];
-    [self.rechargeBtn setBackgroundImage:[UIImage resizableImageWithName:@"通用灰按钮"] forState:UIControlStateHighlighted];
+    [self.rechargeBtn setBackgroundImage:[UIImage resizableImageWithName:@"红色按钮"] forState:UIControlStateNormal];
+//    [self.rechargeBtn setBackgroundImage:[UIImage resizableImageWithName:@"通用灰按钮"] forState:UIControlStateHighlighted];
     [self.rechargeBtn setTitle:@"立即充值" forState:UIControlStateNormal];
     [self.rechargeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 
 
     UIButton * btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(40.0f, 0.0f, 50.0f, 25.0f);
-    [btn setImage:[UIImage imageNamed:@"return.png" ]forState:UIControlStateNormal];
+    [btn setImage:[UIImage imageNamed:@"左上角通用返回" ]forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem * backButton = [[UIBarButtonItem alloc]initWithCustomView:btn];
     self.navigationItem.leftBarButtonItem = backButton;
 
-    [self.btn12 setBackgroundImage:[UIImage imageNamed:@"通用绿按钮"] forState:UIControlStateNormal];
+    [self.btn12 setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btn12 setTitle:ProductID_IAP_Recharge_TITLE_45 forState:UIControlStateNormal];
     self.btn12.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
-    [self.btn50 setBackgroundImage:[UIImage imageNamed:@"通用红按钮"] forState:UIControlStateNormal];
+    [self.btn50 setBackgroundImage:[UIImage resizableImageWithName:@"蓝色按钮"] forState:UIControlStateNormal];
     [self.btn50 setTitle:ProductID_IAP_Recharge_TITLE_60 forState:UIControlStateNormal];
     self.btn50.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
-    [self.btn98 setBackgroundImage:[UIImage imageNamed:@"通用绿按钮"] forState:UIControlStateNormal];
+    [self.btn98 setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btn98 setTitle:ProductID_IAP_Recharge_TITLE_108 forState:UIControlStateNormal];
     self.btn98.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 }
@@ -110,15 +110,15 @@
 //    [self.btn12 setImage:[UIImage imageNamed:@"btn_h_18.png"] forState:UIControlStateNormal];
 //    [self.btn50 setImage:[UIImage imageNamed:@"btn_l_60.png"] forState:UIControlStateNormal];
 //    [self.btn98 setImage:[UIImage imageNamed:@"btn_l_108.png"] forState:UIControlStateNormal];
-    [self.btn12 setBackgroundImage:[UIImage imageNamed:@"通用红按钮"] forState:UIControlStateNormal];
+    [self.btn12 setBackgroundImage:[UIImage resizableImageWithName:@"蓝色按钮"] forState:UIControlStateNormal];
     [self.btn12 setTitle:ProductID_IAP_Recharge_TITLE_45 forState:UIControlStateNormal];
     self.btn12.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
-    [self.btn50 setBackgroundImage:[UIImage imageNamed:@"通用绿按钮"] forState:UIControlStateNormal];
+    [self.btn50 setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btn50 setTitle:ProductID_IAP_Recharge_TITLE_60 forState:UIControlStateNormal];
     self.btn50.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
-    [self.btn98 setBackgroundImage:[UIImage imageNamed:@"通用绿按钮"] forState:UIControlStateNormal];
+    [self.btn98 setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btn98 setTitle:ProductID_IAP_Recharge_TITLE_108 forState:UIControlStateNormal];
     self.btn98.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
@@ -149,15 +149,15 @@
 //    [self.btn12 setImage:[UIImage imageNamed:@"btn_l_18.png"] forState:UIControlStateNormal];
 //    [self.btn50 setImage:[UIImage imageNamed:@"btn_h_60.png"] forState:UIControlStateNormal];
 //    [self.btn98 setImage:[UIImage imageNamed:@"btn_l_108.png"]forState:UIControlStateNormal];
-    [self.btn12 setBackgroundImage:[UIImage imageNamed:@"通用绿按钮"] forState:UIControlStateNormal];
+    [self.btn12 setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btn12 setTitle:ProductID_IAP_Recharge_TITLE_45 forState:UIControlStateNormal];
     self.btn12.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
-    [self.btn50 setBackgroundImage:[UIImage imageNamed:@"通用红按钮"] forState:UIControlStateNormal];
+    [self.btn50 setBackgroundImage:[UIImage resizableImageWithName:@"蓝色按钮"] forState:UIControlStateNormal];
     [self.btn50 setTitle:ProductID_IAP_Recharge_TITLE_60 forState:UIControlStateNormal];
     self.btn50.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
-    [self.btn98 setBackgroundImage:[UIImage imageNamed:@"通用绿按钮"] forState:UIControlStateNormal];
+    [self.btn98 setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btn98 setTitle:ProductID_IAP_Recharge_TITLE_108 forState:UIControlStateNormal];
     self.btn98.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
@@ -168,15 +168,15 @@
 //    [self.btn12 setImage:[UIImage imageNamed:@"btn_l_18.png"] forState:UIControlStateNormal];
 //    [self.btn50 setImage:[UIImage imageNamed:@"btn_l_60.png"] forState:UIControlStateNormal];
 //    [self.btn98 setImage:[UIImage imageNamed:@"btn_h_108.png"]forState:UIControlStateNormal];
-    [self.btn12 setBackgroundImage:[UIImage imageNamed:@"通用绿按钮"] forState:UIControlStateNormal];
+    [self.btn12 setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btn12 setTitle:ProductID_IAP_Recharge_TITLE_45 forState:UIControlStateNormal];
     self.btn12.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
-    [self.btn50 setBackgroundImage:[UIImage imageNamed:@"通用绿按钮"] forState:UIControlStateNormal];
+    [self.btn50 setBackgroundImage:[UIImage resizableImageWithName:@"浅蓝蓝色按钮"] forState:UIControlStateNormal];
     [self.btn50 setTitle:ProductID_IAP_Recharge_TITLE_60 forState:UIControlStateNormal];
     self.btn50.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
-    [self.btn98 setBackgroundImage:[UIImage imageNamed:@"通用红按钮"] forState:UIControlStateNormal];
+    [self.btn98 setBackgroundImage:[UIImage resizableImageWithName:@"蓝色按钮"] forState:UIControlStateNormal];
     [self.btn98 setTitle:ProductID_IAP_Recharge_TITLE_108 forState:UIControlStateNormal];
     self.btn98.titleLabel.font = [UIFont systemFontOfSize: 18.0];
 
@@ -227,18 +227,18 @@
 - (IBAction)btnRechargeClick:(UIButton *)sender {
 
 
-    UserModel * user = [UserModel sharedInstance];
-    if ([user.isUseAlipay isEqualToString:@"1"]) {
-
-        UIActionSheet * sheet  = [[UIActionSheet alloc] initWithTitle:nil
-                                                             delegate:self
-                                                    cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"appstore支付",@"支付宝支付", nil];
-
-        sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-        [sheet showInView:self.view];
-
-
-    }else{
+//    UserModel * user = [UserModel sharedInstance];
+//    if ([user.isUseAlipay isEqualToString:@"1"]) {
+//
+//        UIActionSheet * sheet  = [[UIActionSheet alloc] initWithTitle:nil
+//                                                             delegate:self
+//                                                    cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"appstore支付",@"支付宝支付", nil];
+//
+//        sheet.actionSheetStyle = UIActionSheetStyleBlackOpaque;
+//        [sheet showInView:self.view];
+//
+//
+//    }else{
 
 
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"正在连接App Store" width:0];
@@ -259,7 +259,7 @@
         }
 
 
-    }
+//    }
 
     NSLog(@"充值%d元",_kRechargeButtonNumber);
 //#if 0
@@ -276,11 +276,11 @@
     if (_kRechargeButtonNumber == kRechargeButton18) {
         pricr = @"12";
     }else if (_kRechargeButtonNumber == kRechargeButton168){
-        pricr = @"168";
+        pricr = @"88";
     }else if (_kRechargeButtonNumber == kRechargeButton388){
-        pricr = @"388";
+        pricr = @"188";
     }else if (_kRechargeButtonNumber == kRechargeButton68){
-        pricr = @"68";
+        pricr = @"18";
     }
 
     //测试
@@ -425,26 +425,42 @@
 
 -(int)GetItemID:(NSString*)productID
 {
-    if ([productID isEqual:ProductID_IAP_Recharge_18])return 641466288;
-    if ([productID isEqual:ProductID_IAP_Recharge_60])return 641468450;
-    if ([productID isEqual:ProductID_IAP_Recharge_108])return 641468717;
+    if ([productID isEqual:ProductID_IAP_Recharge_45])return 1317499045;
+    if ([productID isEqual:ProductID_IAP_Recharge_60])return 1317499905;
+    if ([productID isEqual:ProductID_IAP_Recharge_108])return 1317500145;
 
     return -1;
 }
--(BOOL)putStringToItunes:(NSData*)iapData bSandBox:(Boolean)bSandbox
+-(BOOL)putStringToItunes:(NSData*)iapData
 {//iapData是用户购成功的transactionReceipt
 
     NSString* encodingStr = [THUtility encodeBase64WithData:iapData];
     NSLog(@"---encodingStr:%@",encodingStr);
+    
+    NSString * str=[[NSString alloc]initWithData:iapData encoding:NSUTF8StringEncoding];
+    
     NSString *URL;
-    if (bSandbox)
-    {
+
+    NSString *environment=[self environmentForReceipt:str];
+    NSLog(@"----- 完成交易调用的方法completeTransaction 1--------%@",environment);
+    if ([environment isEqualToString:@"environment=Sandbox"]) {
+        
         URL =@"https://sandbox.itunes.apple.com/verifyReceipt";
     }
-    else
-    {
+    else{
+        
         URL=@"https://buy.itunes.apple.com/verifyReceipt";
     }
+    
+    
+//    if (bSandbox)
+//    {
+//        URL =@"https://sandbox.itunes.apple.com/verifyReceipt";
+//    }
+//    else
+//    {
+//        URL=@"https://buy.itunes.apple.com/verifyReceipt";
+//    }
     //NSString *
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];// autorelease];
     [request setURL:[NSURL URLWithString:URL]];
@@ -465,22 +481,23 @@
                                                              error:&errorr];
 
 
-    JSONDecoder *jd = [[JSONDecoder alloc] init];
-    //NSString* slog = [[NSString alloc] initWithData:receivedData encoding:NSASCIIStringEncoding];
-    //[self sendLog:slog];
-    NSDictionary *dic = [jd objectWithData:receivedData];
+//    JSONDecoder *jd = [[JSONDecoder alloc] init];
+//    //NSString* slog = [[NSString alloc] initWithData:receivedData encoding:NSASCIIStringEncoding];
+//    //[self sendLog:slog];
+//    NSDictionary *dic = [jd objectWithData:receivedData];
+    
+    NSError *jsonParsingError = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:receivedData options:kNilOptions error:&jsonParsingError];
+    
+    
     if([[dic objectForKey:@"status"] intValue]==0)//注意，status=@"0" 是验证收据成功
     {
         id rid = [dic objectForKey:@"receipt"];
         if (rid == NULL) {
             return false;
         }
-        NSString *receiptStr = [[dic objectForKey:@"receipt"] JSONString];
-        if (receiptStr == NULL)
-        {
-            return false;
-        }
-        NSDictionary *receiptDic = [jd objectWithUTF8String:(const unsigned char *)[receiptStr UTF8String] length:(NSInteger)[receiptStr length]];
+
+        NSDictionary *receiptDic = [dic objectForKey:@"receipt"]; //[jd objectWithUTF8String:(const unsigned char *)[receiptStr UTF8String] length:(NSInteger)[receiptStr length]];
         if([self GetItemID:[receiptDic objectForKey:@"product_id"]] != [[receiptDic objectForKey:@"item_id"] intValue])
         {
             return false;
@@ -489,11 +506,31 @@
     }
     else if([[dic objectForKey:@"status"] intValue]==21007)
     {
-        return [self putStringToItunes:iapData bSandBox:true];
+        return [self putStringToItunes:iapData];
     }
 
     return false;
 }
+
+-(NSString * )environmentForReceipt:(NSString * )str
+{
+    str= [str stringByReplacingOccurrencesOfString:@"\r\n" withString:@""];
+    
+    str = [str stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    
+    str = [str stringByReplacingOccurrencesOfString:@"\t" withString:@""];
+    
+    str=[str stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    str=[str stringByReplacingOccurrencesOfString:@"\"" withString:@""];
+    
+    NSArray * arr=[str componentsSeparatedByString:@";"];
+    
+    //存储收据环境的变量
+    NSString * environment=arr[2];
+    return environment;
+}
+
 
 ///////////
 -(bool)CanMakePay
@@ -570,19 +607,20 @@
 //弹出错误信息
 - (void)request:(SKRequest *)request didFailWithError:(NSError *)error{
     [DejalBezelActivityView removeView];
+    
+     NSLog(@"------------------错误-----------------:%@", error);
 
     NSLog(@"-------弹出错误信息----------");
     UIAlertView *alerView =  [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"温馨提示",NULL) message:[error localizedDescription]
                                                        delegate:nil cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil];
     [alerView show];
-    //    [alerView release];
 }
 
 -(void) requestDidFinish:(SKRequest *)request
 {
    // [DejalBezelActivityView removeView];
 
-    NSLog(@"----------反馈信息结束--------------");
+    NSLog(@"----------反馈信息结束-------------- %@ ",request);
 
 }
 
@@ -599,7 +637,7 @@
 //用户购买的操作有结果的时候 触发
 - (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions//交易结果
 {
-    NSLog(@"-----paymentQueue--------");
+    NSLog(@"-----paymentQueue-------- %@", transactions);
     for (SKPaymentTransaction *transaction in transactions)
     {
         switch (transaction.transactionState)
@@ -609,12 +647,14 @@
 
 
 
-
-//            if ([self putStringToItunes:transaction.transactionReceipt bSandBox:YES])
+//验证
+//            if ([self putStringToItunes:transaction.transactionReceipt])
 //                {
+                
                   NSString* encodingStr = [THUtility encodeBase64WithData:transaction.transactionReceipt];
                     [self completeTransaction:transaction REceiptString:encodingStr];
                        NSLog(@"-----交易完成 --------");
+                
 
 //                }
 //                else
@@ -635,11 +675,13 @@
             case SKPaymentTransactionStateFailed://交易失败
             {
                  [DejalBezelActivityView removeView];
-                [self failedTransaction:transaction];
+//                [self failedTransaction:transaction];
                 NSLog(@"-----交易失败 --------");
                 UIAlertView *alerView2 =  [[UIAlertView alloc] initWithTitle:@"温馨提示"
                                                                      message:@"您购买失败，请重新尝试购买～"
                                                                     delegate:nil cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil];
+                [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+
 
                 [alerView2 show];
                 //                [alerView2 release];
@@ -692,6 +734,9 @@
     NSLog(@"失败");
     if (transaction.error.code != SKErrorPaymentCancelled)
     {
+        
+        
+        
     }
     [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
 
@@ -777,71 +822,116 @@
 
 
     NSString * url = [NSString stringWithFormat:@"%@%@",ROOT_URL,PAY_INIT_ACTION];
-    NSURL * postServierURL = [NSURL URLWithString:url];
-    _asiRequest = [ASIFormDataRequest requestWithURL:postServierURL];
-    NSLog(@"_asiRequest-->%@",postServierURL);
+//    NSURL * postServierURL = [NSURL URLWithString:url];
+//    _asiRequest = [ASIFormDataRequest requestWithURL:postServierURL];
+//    NSLog(@"_asiRequest-->%@",postServierURL);
+//
+//
+//    //测试，先用的是38ID，后民要改成自己的ID；
+//    [_asiRequest setPostValue:user.userID forKey:@"userID"];
+//    [_asiRequest setPostValue:APP_ID forKey:@"app_id"];
+//    [_asiRequest setPostValue:VERSIONS forKey:@"v"];
+//    [_asiRequest setPostValue:phoneNum forKey:@"mobileNo"];
+//    [_asiRequest setPostValue:@"1" forKey:@"src"];
+//    [_asiRequest setPostValue:_storePrice forKey:@"price"];
+//    //   payType Alipay:100 appstore:103
+//    [_asiRequest setPostValue:receiptString forKey:@"receipt"];
+//    [_asiRequest setPostValue:@"103" forKey:@"payType"];
+//    [_asiRequest setPostValue:sig forKey:@"sig"];
+        
 
+        NSDictionary *paradic = @{
+                              @"userID" : user.userID,
+                              @"app_id" : APP_ID,
+                              @"v" : VERSIONS,
+                              @"mobileNo" : phoneNum,
+                              @"src" : @"1",
+                              @"price" : _storePrice,
+                              @"receipt" : receiptString,
+                              @"payType" : @"103",
+                              @"sig" : sig,
+                              };
 
-    //测试，先用的是38ID，后民要改成自己的ID；
-    [_asiRequest setPostValue:user.userID forKey:@"userID"];
-    [_asiRequest setPostValue:APP_ID forKey:@"app_id"];
-    [_asiRequest setPostValue:VERSIONS forKey:@"v"];
-    [_asiRequest setPostValue:phoneNum forKey:@"mobileNo"];
-    [_asiRequest setPostValue:@"1" forKey:@"src"];
-    [_asiRequest setPostValue:_storePrice forKey:@"price"];
-    //   payType Alipay:100 appstore:103
-    [_asiRequest setPostValue:receiptString forKey:@"receipt"];
-    [_asiRequest setPostValue:@"103" forKey:@"payType"];
-    [_asiRequest setPostValue:sig forKey:@"sig"];
+        
+        [NetWork postWithUrlString:url parameters:paradic success:^(id data) {
 
-    [_asiRequest setDidFailSelector:@selector(requestAppstoreDeleteFileFail:)];
-    [_asiRequest setDidFinishSelector:@selector(requestAppstoreFileFinish:)];
-    [_asiRequest setDidReceiveDataSelector:@selector(requestAppstoreFileReceiveData:didReceiveData:)];
+            NSDictionary * jsonDic =  [data objectFromJSONData];
 
+            NSString * code = [jsonDic objectForKey:@"code"];
+            NSString * codeInfo = [jsonDic objectForKey:@"codeInfo"];
 
-    _asiRequest.delegate = self;
-    [_asiRequest setRequestMethod:@"POST"];
-    [_asiRequest startAsynchronous];
+            if (0 == [code intValue]) {
+                UIAlertView *alerView =  [[UIAlertView alloc] initWithTitle:@"恭喜"
+                                                                    message:@"您购买成功啦，录音币已存入你的账号，请注意查收"
+                                                                   delegate:nil cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil];
+
+                [alerView show];
+            }else
+            {
+                [self alertWithMessage:codeInfo];
+            }
+            
+            [DejalBezelActivityView removeView];
+
+        } failure:^(NSError *error) {
+
+            [DejalBezelActivityView removeView];
+            NSLog(@"error --- %@",error);
+
+        }];
+        
+
+//    [_asiRequest setDidFailSelector:@selector(requestAppstoreDeleteFileFail:)];
+//    [_asiRequest setDidFinishSelector:@selector(requestAppstoreFileFinish:)];
+//    [_asiRequest setDidReceiveDataSelector:@selector(requestAppstoreFileReceiveData:didReceiveData:)];
+//
+//
+//    _asiRequest.delegate = self;
+//    [_asiRequest setRequestMethod:@"POST"];
+//    [_asiRequest startAsynchronous];
+//
+//        NSDictionary *d = _asiRequest.requestHeaders;
+    
     }
 }
 
-- (void)requestAppstoreFileReceiveData:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
-{
-    NSDictionary * jsonDic =  [data objectFromJSONData];
+//- (void)requestAppstoreFileReceiveData:(ASIHTTPRequest *)request didReceiveData:(NSData *)data
+//{
+//    NSDictionary * jsonDic =  [data objectFromJSONData];
+//
+//    NSString * code = [jsonDic objectForKey:@"code"];
+//    NSString * codeInfo = [jsonDic objectForKey:@"codeInfo"];
+//
+//    if (0 == [code intValue]) {
+//        UIAlertView *alerView =  [[UIAlertView alloc] initWithTitle:@"恭喜"
+//                                                            message:@"您购买成功啦，录音币已存入你的账号，请注意查收"
+//                                                           delegate:nil cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil];
+//
+//        [alerView show];
+//    }else
+//    {
+//        [self alertWithMessage:codeInfo];
+//    }
+//}
 
-    NSString * code = [jsonDic objectForKey:@"code"];
-    NSString * codeInfo = [jsonDic objectForKey:@"codeInfo"];
 
-    if (0 == [code intValue]) {
-        UIAlertView *alerView =  [[UIAlertView alloc] initWithTitle:@"恭喜"
-                                                            message:@"您购买成功啦，录音币已存入你的账号，请注意查收"
-                                                           delegate:nil cancelButtonTitle:NSLocalizedString(@"确定",nil) otherButtonTitles:nil];
+//-(void)requestAppstoreFileFinish:(ASIHTTPRequest *)request
+//{
+//    NSLog(@"-----------------------+++++++++++++++++++++++++++++++++++++request Finish");
+//
+//    NSLog(@"%@",request);
+//
+//    [DejalBezelActivityView removeView];
+//
+//}
 
-        [alerView show];
-    }else
-    {
-        [self alertWithMessage:codeInfo];
-    }
-}
-
-
--(void)requestAppstoreFileFinish:(ASIHTTPRequest *)request
-{
-    NSLog(@"-----------------------+++++++++++++++++++++++++++++++++++++request Finish");
-
-    NSLog(@"%@",request);
-
-    [DejalBezelActivityView removeView];
-
-}
-
-- (void)requestAppstoreDeleteFileFail:(ASIHTTPRequest *)request
-{
-    NSLog(@"request Failed");
-
-    NSLog(@"%@",request);
-
-}
+//- (void)requestAppstoreDeleteFileFail:(ASIHTTPRequest *)request
+//{
+//    NSLog(@"request Failed");
+//
+//    NSLog(@"%@",request);
+//
+//}
 
 - (void) alertWithMessage:(NSString *)msg
 {

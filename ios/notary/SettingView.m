@@ -222,20 +222,25 @@
                        @"退出登录",
                        @"下载记录",
                        nil];
-    _contentImageArr = [NSArray arrayWithObjects:
-                        [UIImage imageNamed:@"icon_message"],
-                        [UIImage imageNamed:@"icon_up"],
-                        [UIImage imageNamed:@"icon_down"],
-                        [UIImage imageNamed:@"icon_record1"],
-                        [UIImage imageNamed:@"share_small"],
-                        [UIImage imageNamed:@"icon_linkus"],
-                        [UIImage imageNamed:@"icon_help"],
-                        [UIImage imageNamed:@"icon_about"],
-                        [UIImage imageNamed:@"s_check_update"],
-                        [UIImage imageNamed:@"icon_rank"],
-                        [UIImage imageNamed:@"icon_change"],
-                        [UIImage imageNamed:@"icon_exit"],
-                        [UIImage imageNamed:@"clean"],nil];
+//    _contentImageArr = [NSArray arrayWithObjects:
+//                        [UIImage imageNamed:@"icon_message"],
+//                        [UIImage imageNamed:@"icon_up"],
+//                        [UIImage imageNamed:@"icon_down"],
+//                        [UIImage imageNamed:@"icon_record1"],
+//                        [UIImage imageNamed:@"share_small"],
+//                        [UIImage imageNamed:@"icon_linkus"],
+//                        [UIImage imageNamed:@"icon_help"],
+//                        [UIImage imageNamed:@"icon_about"],
+//                        [UIImage imageNamed:@"s_check_update"],
+//                        [UIImage imageNamed:@"icon_rank"],
+//                        [UIImage imageNamed:@"icon_change"],
+//                        [UIImage imageNamed:@"icon_exit"],
+//                        [UIImage imageNamed:@"clean"],
+//                        [UIImage imageNamed:@"icon_message"],
+//                        [UIImage imageNamed:@"icon_message"],
+//                        [UIImage imageNamed:@"icon_message"],
+//                        [UIImage imageNamed:@"icon_message"],
+//                        [UIImage imageNamed:@"icon_message"],nil];
 
     _msgArr = [[NSMutableArray alloc] initWithCapacity:0];
     
@@ -373,24 +378,26 @@
 //        }
 //    }
 //        else
+    
+    
     if(0 == indexPath.section){
         switch (indexPath.row) {
             case 0:
                 cell.myContentLabel.text = [_contentTextArr objectAtIndex: 6];
-                cell.myLeftImage.image = [_contentImageArr objectAtIndex:6];
+                cell.myLeftImage.image = [UIImage imageNamed:@"icon_help"];//[_contentImageArr objectAtIndex:6];
                 break;
             case 1:
                 cell.myContentLabel.text = [_contentTextArr objectAtIndex: 5];
-                cell.myLeftImage.image = [_contentImageArr objectAtIndex:5];
+                cell.myLeftImage.image = [UIImage imageNamed:@"icon_linkus"];//[_contentImageArr objectAtIndex:5];
                 break;
             case 2:
                 cell.myContentLabel.text = [_contentTextArr objectAtIndex:7];
-                cell.myLeftImage.image = [_contentImageArr objectAtIndex:7];
+                cell.myLeftImage.image = [UIImage imageNamed:@"icon_about"];
                 break;
                 
             case 3:
                 cell.myContentLabel.text = [_contentTextArr objectAtIndex:13];
-                cell.myLeftImage.image = [_contentImageArr objectAtIndex:11];
+                cell.myLeftImage.image = [UIImage imageNamed:@"icon_down"];
                 break;
 //            case 3:
 //                cell.myContentLabel.text = [_contentTextArr objectAtIndex: 8];
@@ -406,13 +413,13 @@
 //    }
         else if(1 == indexPath.section){
         cell.myContentLabel.text = [_contentTextArr objectAtIndex: 11];
-        cell.myLeftImage.image = [_contentImageArr objectAtIndex:10];
+        cell.myLeftImage.image = [UIImage imageNamed:@"icon_change"];
     }
         else if(2 == indexPath.section){
         cell.myContentLabel.text = [_contentTextArr objectAtIndex: 12];
 //        cell.myLeftImage.image = [_contentImageArr objectAtIndex:11];
 //        cell.myContentLabel.text = @"";
-        cell.myLeftImage.image = [_contentImageArr objectAtIndex:11];
+        cell.myLeftImage.image = [UIImage imageNamed:@"icon_exit"];
     }
 
     return cell;

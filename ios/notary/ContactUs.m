@@ -275,7 +275,7 @@
     mailPicker.mailComposeDelegate = self;
     
     //设置主题
-    [mailPicker setSubject: @"电话录音邮件反馈"];
+    [mailPicker setSubject: @"录音存证邮件反馈"];
     //添加收件人
     NSArray *toRecipients = [NSArray arrayWithObject: @"service@4008786688.com"];
     [mailPicker setToRecipients: toRecipients];
