@@ -62,12 +62,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [MobClick beginLogPageView:@"文件选择"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"文件选择"];
 }
 
 - (void)didReceiveMemoryWarning

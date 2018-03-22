@@ -81,7 +81,6 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [MobClick beginLogPageView:@"充值页面"];
     [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];//解除监听
 
     [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
@@ -90,7 +89,6 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    [MobClick endLogPageView:@"充值页面"];
     [self cancelStoreRequest];
     [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];//解除监听
     [super viewWillDisappear:animated];

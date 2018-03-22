@@ -163,7 +163,6 @@
     //[self.navigationController setNavigationBarHidden:YES animated:YES];
 
     
-    [MobClick endLogPageView:@"设置页面"];
     [self cancel];
      [DejalBezelActivityView removeView];
     [super viewDidDisappear:animated];
@@ -171,7 +170,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [MobClick beginLogPageView:@"设置页面"];
     //查询数据库，找下载和上传的总数显示
     [self openSqite];
     

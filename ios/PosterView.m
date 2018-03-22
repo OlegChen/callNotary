@@ -41,13 +41,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"活动页面"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    [MobClick endLogPageView:@"活动页面"];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];

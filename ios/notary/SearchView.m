@@ -75,13 +75,11 @@
     [super viewWillAppear:animated];
     AppDelegate * delgate =  (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delgate hiddenTab:YES];
-    [MobClick beginLogPageView:@"搜索"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    [MobClick endLogPageView:@"搜索"];
 }
 - (void)didReceiveMemoryWarning
 {

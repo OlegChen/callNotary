@@ -72,13 +72,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"上传记录"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    [MobClick endLogPageView:@"上传记录"];
 }
 - (void)handleEditItemClick:(UIButton *)but
 {

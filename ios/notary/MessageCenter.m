@@ -22,13 +22,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"消息中心"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
 
-    [MobClick endLogPageView:@"消息中心"];
 }
 
 - (void)back

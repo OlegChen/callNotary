@@ -53,12 +53,10 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"更多"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"更多"];
 }
 - (void)didReceiveMemoryWarning
 {

@@ -24,7 +24,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"联系客服页面"];
     
     [self.Btn setBackgroundImage:[UIImage resizableImageWithName:@"红色按钮"] forState:UIControlStateNormal];
     
@@ -37,7 +36,6 @@
 {
     [super viewWillDisappear:animated];
     
-    [MobClick endLogPageView:@"联系客服页面"];
 }
 
 - (void)back

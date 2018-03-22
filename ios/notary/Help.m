@@ -21,13 +21,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"帮助页面"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    [MobClick endLogPageView:@"帮助页面"];
 }
 
 - (void)back

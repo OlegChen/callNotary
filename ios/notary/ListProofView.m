@@ -314,7 +314,6 @@
     [Tool getOSCNotice2:@"nil"];
     AppDelegate * delgate =  (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delgate hiddenTab:YES];
-    [MobClick beginLogPageView:@"证据列表"];
     if ([self.parentFolder.type isEqualToString:@"6"]){
         _contentView.hidden = NO;
         [self getMoreLocData];
@@ -380,7 +379,6 @@
         [_request clearDelegatesAndCancel];
         _request = nil;
     }
-    [MobClick endLogPageView:@"证据列表"];
 }
 - (void)didReceiveMemoryWarning
 {

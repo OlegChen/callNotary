@@ -610,7 +610,6 @@
 {
     _jsonData = [[NSMutableData alloc] init];
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"个人中心"];
     [self postHttp];
 //    [self postHttpGetTipsNum];
     [self httpGetShareMessage];
@@ -659,7 +658,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [MobClick endLogPageView:@"个人中心"];
     NSLog(@"view DidDisappear");
     if (request != nil) {
 
@@ -735,7 +733,6 @@
 //    TestRecharge *rechargeVC = [[TestRecharge alloc] init];
     
     //充值
-    [MobClick event:@"充值按钮"];
     Recharge *rechargeVC = [[Recharge alloc] init];
     [self.navigationController pushViewController:rechargeVC animated:YES];
     [((AppDelegate *)[[UIApplication sharedApplication] delegate]) hiddenTab:YES];

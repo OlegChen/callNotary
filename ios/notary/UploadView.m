@@ -211,7 +211,6 @@ self.txtDirectory.backgroundColor = [URLUtil colorWithHexString:@"#ffffff"];
     if (nil != _folder) {
         _txtDirectory.attributedText = [self resetContentWithStr:_folder.folderName HeadIndent:10];
     }
-    [MobClick beginLogPageView:@"本地上传"];
     [self removeMessageNum];
 }
 - (void)viewWillDisappear:(BOOL)animated {
@@ -222,7 +221,6 @@ self.txtDirectory.backgroundColor = [URLUtil colorWithHexString:@"#ffffff"];
     _upload = nil;
 //    self.model = nil;
     
-    [MobClick endLogPageView:@"本地上传"];
 }
 
 
@@ -307,7 +305,6 @@ if (_isPresent) {
 }
 - (IBAction)btnSendClick:(id)sender
 {
-    [MobClick event:@"上传事件"];
     
     NSString * fileName = _txtFileName.text;
     if (fileName == nil || [fileName isEqualToString:@""]) {

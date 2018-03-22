@@ -146,7 +146,6 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
-    [MobClick endLogPageView:@"我的页面"];
     //[self cancel];
     [DejalBezelActivityView removeView];
     [super viewDidDisappear:animated];
@@ -154,7 +153,6 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [MobClick beginLogPageView:@"我的页面"];
     //查询数据库，找下载和上传的总数显示
     //[self openSqite];
     //[self postHttpGetTipsNum];

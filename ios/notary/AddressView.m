@@ -242,7 +242,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [MobClick endLogPageView:@"通话录音"];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -250,7 +249,6 @@
     
 //    self.navigationController.navigationBarHidden = YES;
     
-    [MobClick beginLogPageView:@"通话录音"];
     
 }
 

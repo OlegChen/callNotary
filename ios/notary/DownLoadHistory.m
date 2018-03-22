@@ -88,7 +88,6 @@ static FileModel * tmpFileModel = nil;
         [down setMyDelegate:nil];
     }
     
-    [MobClick endLogPageView:@"下载记录"];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -96,7 +95,6 @@ static FileModel * tmpFileModel = nil;
     
     [super viewWillAppear:animated];
     
-    [MobClick beginLogPageView:@"下载记录"];
 }
 - (void)handleEditItemClick:(UIButton *)but
 {

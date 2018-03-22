@@ -250,7 +250,6 @@
         _alert4Search.maxLength = 40;
         [_alert4Search show];
         
-        [MobClick event:@"收索事件"];
     
     }
     
@@ -503,7 +502,6 @@
     _jsonData1=[[NSMutableData alloc] init];
     AppDelegate * delgate =  (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delgate hiddenTab:NO];
-    [MobClick beginLogPageView:@"证据管理"];
     /////yang---/////
      //[self requestFolderList];
     //modify by liwzh消息获取方式修改  beigin
@@ -515,7 +513,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [MobClick endLogPageView:@"证据管理"];
     [self removeMessageNum];
 }
 - (void)didReceiveMemoryWarning
@@ -634,7 +631,6 @@
     _alert4Folder.maxLength = 60;
     [_alert4Folder show];
     
-    [MobClick event:@"创建文件夹"];
     }
 }
 - (IBAction)btnRecoverClick:(UIButton *)but

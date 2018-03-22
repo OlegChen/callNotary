@@ -43,13 +43,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [MobClick beginLogPageView:@"法律咨询页面"];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
-    [MobClick endLogPageView:@"法律咨询页面"];
 }
 -(void)keyBoardShowCallBack:(NSNotification *)notification{
     if (control == nil) {
