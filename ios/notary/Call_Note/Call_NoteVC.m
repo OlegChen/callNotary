@@ -86,26 +86,37 @@
     ////
     double version = [[UIDevice currentDevice].systemVersion doubleValue];
     ABAddressBookRef addressBooks = nil;
+//
+//    if(version  >= 6.0f) {
+//
+//        addressBooks = ABAddressBookCreateWithOptions(NULL, NULL);
+//        //等待用户许可
+//        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+//        ABAddressBookRequestAccessWithCompletion(addressBooks,
+//                                                 ^(bool granted, CFErrorRef error)
+//                                                 {
+//                                                     dispatch_semaphore_signal(sema);
+//                                                 });
+//        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+//
+//
+//    }
+//    else if (version < 6.0f) {
+//
+//        addressBooks = ABAddressBookCreate();
+//
+//    }
     
-    if(version  >= 6.0f) {
-        
-        addressBooks = ABAddressBookCreateWithOptions(NULL, NULL);
-        //等待用户许可
-        dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-        ABAddressBookRequestAccessWithCompletion(addressBooks,
-                                                 ^(bool granted, CFErrorRef error)
-                                                 {
-                                                     dispatch_semaphore_signal(sema);
-                                                 });
-        dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-        
-        
-    }
-    else if (version < 6.0f) {
-        
-        addressBooks = ABAddressBookCreate();
-        
-    }
+    addressBooks = ABAddressBookCreateWithOptions(NULL, NULL); ABAddressBookRequestAccessWithCompletion(addressBooks, ^(bool granted, CFErrorRef error) {
+        if (granted) {
+            NSLog(@"Authorized");
+            CFRelease(addressBooks);
+            
+        }else{
+            NSLog(@"Denied or Restricted");
+            
+        }});
+    
     return addressBooks;
 }
 - (void)initAddressBook
